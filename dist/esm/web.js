@@ -1,11 +1,5 @@
 import { WebPlugin } from '@capacitor/core';
 export class IntercomWeb extends WebPlugin {
-    constructor() {
-        super({
-            name: 'Intercom',
-            platforms: ['web'],
-        });
-    }
     async registerIdentifiedUser(options) {
         options;
         throw this.unimplemented('Not implemented on web.');

@@ -6,12 +6,6 @@ var capacitorIntercom = (function (exports, core) {
     });
 
     class IntercomWeb extends core.WebPlugin {
-        constructor() {
-            super({
-                name: 'Intercom',
-                platforms: ['web'],
-            });
-        }
         async registerIdentifiedUser(options) {
             throw this.unimplemented('Not implemented on web.');
         }

@@ -1,7 +1,6 @@
 import { WebPlugin } from '@capacitor/core';
 import { IntercomPlugin, IntercomPushNotificationData, IntercomUserUpdateOptions } from './definitions';
 export declare class IntercomWeb extends WebPlugin implements IntercomPlugin {
-    constructor();
     registerIdentifiedUser(options: {
         userId?: string;
         email?: string;

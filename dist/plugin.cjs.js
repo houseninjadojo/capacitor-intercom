@@ -9,12 +9,6 @@ const Intercom$1 = core.registerPlugin('Intercom', {
 });
 
 class IntercomWeb extends core.WebPlugin {
-    constructor() {
-        super({
-            name: 'Intercom',
-            platforms: ['web'],
-        });
-    }
     async registerIdentifiedUser(options) {
         throw this.unimplemented('Not implemented on web.');
     }
