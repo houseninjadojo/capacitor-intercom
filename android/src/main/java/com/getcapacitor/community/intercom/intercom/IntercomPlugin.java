@@ -10,6 +10,8 @@ import com.getcapacitor.PluginMethod;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import com.getcapacitor.annotation.Permission;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -49,15 +51,15 @@ public class IntercomPlugin extends Plugin {
         });
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void boot(PluginCall call) {
         call.unimplemented("Not implemented on Android. Use `registerIdentifiedUser` instead.");
     }
 
-    @PluginMethod
-    public void registerIdentifiedUser(PluginCall call) {
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    public void loginUser(PluginCall call) throws JSONException {
         String email = call.getString("email");
-        String userId = call.getString("userId");
+        String userId = call.getData().get("userId").toString();
 
         Registration registration = new Registration();
 
@@ -71,13 +73,29 @@ public class IntercomPlugin extends Plugin {
         call.resolve();
     }
 
-    @PluginMethod
-    public void registerUnidentifiedUser(PluginCall call) {
-        Intercom.client().registerUnidentifiedUser();
+    /**
+     * @deprecated use {@link IntercomPlugin#loginUser(PluginCall)}
+     */
+    @Deprecated(forRemoval = true)
+    public void registeredIdentifiedUser(PluginCall call) throws JSONException {
+        return this.loginIdentifiedUser(call);
+    }
+
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    public void loginUnidentifiedUser(PluginCall call) {
+        Intercom.client().loginUnidentifiedUser();
         call.resolve();
     }
 
-    @PluginMethod
+    /**
+     * @deprecated use {@link IntercomPlugin#loginUnidentifiedUser(PluginCall)}
+     */
+    @Deprecated(forRemoval = true)
+    public void registerUnidentifiedUser(PluginCall call) {
+        return this.loginUnidentifiedUser(call);
+    }
+
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void updateUser(PluginCall call) {
         UserAttributes.Builder builder = new UserAttributes.Builder();
         String userId = call.getString("userId");
@@ -102,17 +120,26 @@ public class IntercomPlugin extends Plugin {
         }
         Map<String, Object> customAttributes = mapFromJSON(call.getObject("customAttributes"));
         builder.withCustomAttributes(customAttributes);
-        Intercom.client().updateUser(builder.build());
-        call.resolve();
+        Intercom.client().updateUser(
+            userAttributes = builder.build(),
+            intercomStatusCallback = object : IntercomStatusCallback {
+                override fun onSuccess() {
+                    call.resolve();
+                }
+                override fun onFailure(intercomError: IntercomError) {
+                    call.reject(intercomError.message, intercomError);
+                }
+            }
+        );
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void logout(PluginCall call) {
         Intercom.client().logout();
         call.resolve();
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void logEvent(PluginCall call) {
         String eventName = call.getString("name");
         Map<String, Object> metaData = mapFromJSON(call.getObject("data"));
@@ -126,70 +153,78 @@ public class IntercomPlugin extends Plugin {
         call.resolve();
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void displayMessenger(PluginCall call) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
         Intercom.client().displayMessenger();
         call.resolve();
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void displayMessageComposer(PluginCall call) {
         String message = call.getString("message");
         Intercom.client().displayMessageComposer(message);
         call.resolve();
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void displayHelpCenter(PluginCall call) {
         Intercom.client().displayHelpCenter();
         call.resolve();
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    public void displayArticle(PluginCall call) {
+        String articleId = call.getString("articleId");
+        Intercom.client().displayArticle(articleId);
+        call.resolve();
+    }
+
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void hideMessenger(PluginCall call) {
         Intercom.client().hideIntercom();
         call.resolve();
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void displayLauncher(PluginCall call) {
         Intercom.client().setLauncherVisibility(Intercom.VISIBLE);
         call.resolve();
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void hideLauncher(PluginCall call) {
         Intercom.client().setLauncherVisibility(Intercom.GONE);
         call.resolve();
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void displayInAppMessages(PluginCall call) {
         Intercom.client().setInAppMessageVisibility(Intercom.VISIBLE);
         call.resolve();
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void hideInAppMessages(PluginCall call) {
         Intercom.client().setLauncherVisibility(Intercom.GONE);
         call.resolve();
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void displayCarousel(PluginCall call) {
         String carouselId = call.getString("carouselId");
         Intercom.client().displayCarousel(carouselId);
         call.resolve();
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void setUserHash(PluginCall call) {
         String hmac = call.getString("hmac");
         Intercom.client().setUserHash(hmac);
         call.resolve();
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void setBottomPadding(PluginCall call) {
         String stringValue = call.getString("value");
         int value = Integer.parseInt(stringValue);
@@ -197,7 +232,7 @@ public class IntercomPlugin extends Plugin {
         call.resolve();
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void sendPushTokenToIntercom(PluginCall call) {
         String token = call.getString("value");
         try {
@@ -208,7 +243,7 @@ public class IntercomPlugin extends Plugin {
         }
     }
 
-    @PluginMethod
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void receivePush(PluginCall call) {
         try {
             JSObject notificationData = call.getData();

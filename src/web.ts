@@ -32,12 +32,20 @@ export class IntercomWeb extends WebPlugin implements IntercomPlugin {
   }
 
   async registerIdentifiedUser(options: { userId?: string; email?: string }): Promise<void> {
+    return this.loginUser(options);
+  }
+
+  async loginUser(options: { userId?: string; email?: string }): Promise<void> {
     options = objectKeysCamelToSnakeCase(options);
     window.Intercom('update', options);
     return Promise.resolve();
   }
 
   async registerUnidentifiedUser(): Promise<void> {
+    return this.loginUnidentifiedUser();
+  }
+
+  async loginUnidentifiedUser(): Promise<void> {
     throw this.unimplemented('Not implemented on web.');
   }
 
@@ -69,6 +77,11 @@ export class IntercomWeb extends WebPlugin implements IntercomPlugin {
 
   async displayHelpCenter(): Promise<void> {
     throw this.unimplemented('Not implemented on web.');
+  }
+
+  async displayArticle(options: { articleId: string; }): Promise<void> {
+    window.Intercom('showArticle', options.articleId);
+    return Promise.resolve();
   }
 
   async hideMessenger(): Promise<void> {

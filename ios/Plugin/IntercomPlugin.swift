@@ -31,67 +31,89 @@ public class IntercomPlugin: CAPPlugin {
     guard let deviceToken = notification.object as? Data else {
       return
     }
-    Intercom.setDeviceToken(deviceToken)
+    Intercom.setDeviceToken(deviceToken) { error in
+      throw error
+    }
   }
 
   @objc func onUnreadConversationCountChange() {
-    let unreadCount = Intercom.unreadConversationCount()
-    self.notifyListeners("onUnreadCountChange", data: ["value":unreadCount])
+    DispatchQueue.global.async {
+      let unreadCount = Intercom.unreadConversationCount()
+      self.notifyListeners("onUnreadCountChange", data: ["value":unreadCount])
+    }
   }
 
   @objc func boot(_ call: CAPPluginCall) {
     call.unimplemented("Not implemented on iOS. Use `registerIdentifiedUser` instead.")
   }
 
+  @available(*, deprecated, message: "Use `loginUser` instead")
   @objc func registerIdentifiedUser(_ call: CAPPluginCall) {
-    let userId = call.getString("userId")
-    let email = call.getString("email")
+    self.loginUser(call)
+  }
 
-    if (userId != nil && email != nil) {
-      Intercom.registerUser(withUserId: userId!, email: email!)
-      call.resolve()
-    } else if (userId != nil) {
-      Intercom.registerUser(withUserId: userId!)
-      call.resolve()
-    } else if (email != nil) {
-      Intercom.registerUser(withEmail: email!)
-      call.resolve()
-    } else {
-      call.reject("No user registered. You must supply an email, userId or both")
+  @objc func loginUser(_ call: CAPPluginCall) {
+    let attributes = ICMUserAttributes()
+    if (call.hasOption("email")) {
+      attributes.email = call.getString("email")
+    }
+    if (call.hasOption("userId")) {
+      attributes.name = call.getAny("userId") as? String
+    }
+    Intercom.loginUser(with: attributes) { result in
+      switch result {
+      case .success:
+        call.resolve()
+      case .failure(let error):
+        call.reject(error.localizedDescription, error.code, error)
+      }
     }
   }
 
+  @objc func loginUnidentifiedUser(_ call: CAPPluginCall) {
+    Intercom.loginUnidentifiedUser() { result in
+      switch result {
+      case .success:
+        call.resolve()
+      case .failure(let error):
+        call.reject(error.localizedDescription, error.code, error)
+      }
+    }
+  }
+
+  @available(*, deprecated, message: "Use `loginUnidentifiedUser` instead")
   @objc func registerUnidentifiedUser(_ call: CAPPluginCall) {
-    Intercom.registerUnidentifiedUser()
-    call.resolve()
+    self.loginUnidentifiedUser(call)
   }
 
   @objc func updateUser(_ call: CAPPluginCall) {
-    let userAttributes = ICMUserAttributes()
-    let userId = call.getString("userId")
-    if (userId != nil) {
-        userAttributes.userId = userId
+    let attributes = ICMUserAttributes()
+    if let userId = call.getValue("userId") {
+      attributes.userId = userId as? String
     }
-    let email = call.getString("email")
-    if (email != nil) {
-        userAttributes.email = email
+    if let email = call.getString("email") {
+      attributes.email = email
     }
-    let name = call.getString("name")
-    if (name != nil) {
-        userAttributes.name = name
+    if let name = call.getString("name") {
+      attributes.name = name
     }
-    let phone = call.getString("phone")
-    if (phone != nil) {
-        userAttributes.phone = phone
+    if let phone = call.getString("phone") {
+      attributes.phone = phone
     }
-    let languageOverride = call.getString("languageOverride")
-    if (languageOverride != nil) {
-        userAttributes.languageOverride = languageOverride
+    if let languageOverride = call.getString("languageOverride") {
+      attributes.languageOverride = languageOverride
     }
-    let customAttributes = call.getObject("customAttributes")
-    userAttributes.customAttributes = customAttributes
-    Intercom.updateUser(userAttributes)
-    call.resolve()
+    if let customAttributes = call.getObject("customAttributes") {
+      attributes.customAttributes = customAttributes
+    }
+    Intercom.updateUser(with: attributes) { result in
+      switch result {
+      case .success:
+        call.resolve()
+      case .failure(let error):
+        call.reject(error.localizedDescription, error.code, error)
+      }
+    }
   }
 
   @objc func logout(_ call: CAPPluginCall) {
@@ -100,92 +122,110 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func logEvent(_ call: CAPPluginCall) {
-    let eventName = call.getString("name")
-    let metaData = call.getObject("data")
-
-    if (eventName != nil && metaData != nil) {
-      Intercom.logEvent(withName: eventName!, metaData: metaData!)
-
-    }else if (eventName != nil) {
-      Intercom.logEvent(withName: eventName!)
+    if let eventName = call.getString("name") {
+      if let metaData = call.getObject("data") {
+        Intercom.logEvent(withName: eventName, metaData: metaData)
+      } else {
+        Intercom.logEvent(withName: eventName)
+      }
+      call.resolve()
     }
-
-    call.resolve()
   }
 
   @objc func displayMessenger(_ call: CAPPluginCall) {
-    Intercom.presentMessenger();
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.presentMessenger()
+      call.resolve()
+    }
   }
 
   @objc func displayMessageComposer(_ call: CAPPluginCall) {
-    guard let initialMessage = call.getString("message") else {
+    if let initialMessage = call.getString("message") {
+      Intercom.presentMessageComposer(initialMessage);
+      call.resolve()
+    } else {
       call.reject("Enter an initial message")
-      return
     }
-    Intercom.presentMessageComposer(initialMessage);
-    call.resolve()
-  }
-
-  @objc func displayHelpCenter(_ call: CAPPluginCall) {
-    Intercom.presentHelpCenter()
-    call.resolve()
   }
 
   @objc func hideMessenger(_ call: CAPPluginCall) {
-    Intercom.hide()
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.hide()
+      call.resolve()
+    }
+  }
+
+  @objc func displayHelpCenter(_ call: CAPPluginCall) {
+    DispatchQueue.main.async {
+      Intercom.presentHelpCenter()
+      call.resolve()
+    }
+  }
+
+  @objc func displayArticle(_ call: CAPPluginCall) {
+    if let articleId = call.getValue("articleId") as String? {
+      DispatchQueue.main.async {
+        Intercom.presentArticle(articleId)
+        call.resolve()
+      }
+    } else {
+      call.reject("articleId not provided to presentArticle.")
+    }
   }
 
   @objc func displayLauncher(_ call: CAPPluginCall) {
-    Intercom.setLauncherVisible(true)
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.setLauncherVisible(true)
+      call.resolve()
+    }
   }
 
   @objc func hideLauncher(_ call: CAPPluginCall) {
-    Intercom.setLauncherVisible(false)
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.setLauncherVisible(false)
+      call.resolve()
+    }
   }
 
   @objc func displayInAppMessages(_ call: CAPPluginCall) {
-    Intercom.setInAppMessagesVisible(true)
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.setInAppMessagesVisible(true)
+      call.resolve()
+    }
   }
 
   @objc func hideInAppMessages(_ call: CAPPluginCall) {
-    Intercom.setInAppMessagesVisible(false)
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.setInAppMessagesVisible(false)
+      call.resolve()
+    }
   }
 
   @objc func displayCarousel(_ call: CAPPluginCall) {
-    if let carouselId = call.getString("carouselId") {
+    if let carouselId = call.getValue("carouselId") as String? {
+      DispatchQueue.main.async {
         Intercom.presentCarousel(carouselId)
         call.resolve()
-    }else{
+      }
+    } else {
       call.reject("carouselId not provided to displayCarousel.")
     }
   }
 
   @objc func setUserHash(_ call: CAPPluginCall) {
-    let hmac = call.getString("hmac")
-
-    if (hmac != nil) {
-      Intercom.setUserHash(hmac!)
+    if let userHash = call.getString("userHash") {
+      Intercom.setUserHash(userHash)
       call.resolve()
-      print("hmac sent to intercom")
-    }else{
+    } else {
       call.reject("No hmac found. Read intercom docs and generate it.")
     }
   }
 
   @objc func setBottomPadding(_ call: CAPPluginCall) {
-
     if let value = call.getString("value"),
-      let number = NumberFormatter().number(from: value) {
-
+       let number = NumberFormatter().number(from: value) {
         Intercom.setBottomPadding(CGFloat(truncating: number))
         call.resolve()
-        print("set bottom padding")
       } else {
         call.reject("Enter a value for padding bottom")
       }

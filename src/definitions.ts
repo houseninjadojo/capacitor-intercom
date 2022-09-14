@@ -2,10 +2,15 @@ import type { PluginListenerHandle } from '@capacitor/core';
 
 export interface IntercomPlugin {
   boot(options: IntercomSettings): Promise<void>;
+  loginUser(options: {
+    userId?: string;
+    email?: string;
+  }): Promise<void>;
   registerIdentifiedUser(options: {
     userId?: string;
     email?: string;
   }): Promise<void>;
+  loginUnidentifiedUser(): Promise<void>;
   registerUnidentifiedUser(): Promise<void>;
   updateUser(options: IntercomUserUpdateOptions): Promise<void>;
   logout(): Promise<void>;
@@ -13,6 +18,7 @@ export interface IntercomPlugin {
   displayMessenger(): Promise<void>;
   displayMessageComposer(options: { message: string }): Promise<void>;
   displayHelpCenter(): Promise<void>;
+  displayArticle(options: { articleId: string; }): Promise<void>;
   hideMessenger(): Promise<void>;
   displayLauncher(): Promise<void>;
   hideLauncher(): Promise<void>;

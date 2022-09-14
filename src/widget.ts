@@ -1,4 +1,3 @@
-// @ts-nocheck
 import type { IntercomSettings } from './definitions';
 
 declare global {
@@ -29,6 +28,8 @@ const initialize = (appId: string, timeout = 0): void => {
     const i = function(...args: any[]) {
       i.c(args);
     };
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     i.q = [];
     i.c = function(...args: any[]) {
       i.q.push(args);
@@ -41,6 +42,8 @@ const initialize = (appId: string, timeout = 0): void => {
         s.async = true;
         s.src = 'https://widget.intercom.io/widget/' + appId;
         const x = d.getElementsByTagName('script')[0];
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         x.parentNode.insertBefore(s, x);
       }, timeout);
     };
