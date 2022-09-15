@@ -9,11 +9,22 @@ export declare class IntercomWeb extends WebPlugin implements IntercomPlugin {
     private _unreadConversationCount;
     constructor();
     boot(options: IntercomSettings): Promise<void>;
+    /**
+     * @deprecated
+     */
     registerIdentifiedUser(options: {
         userId?: string;
         email?: string;
     }): Promise<void>;
+    loginUser(options: {
+        userId?: string;
+        email?: string;
+    }): Promise<void>;
+    /**
+     * @deprecated
+     */
     registerUnidentifiedUser(): Promise<void>;
+    loginUnidentifiedUser(): Promise<void>;
     updateUser(options: IntercomUserUpdateOptions): Promise<void>;
     logout(): Promise<void>;
     logEvent(options: {
@@ -25,6 +36,9 @@ export declare class IntercomWeb extends WebPlugin implements IntercomPlugin {
         message: string;
     }): Promise<void>;
     displayHelpCenter(): Promise<void>;
+    displayArticle(options: {
+        articleId: string;
+    }): Promise<void>;
     hideMessenger(): Promise<void>;
     displayLauncher(): Promise<void>;
     hideLauncher(): Promise<void>;

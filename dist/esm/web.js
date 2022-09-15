@@ -12,12 +12,24 @@ export class IntercomWeb extends WebPlugin {
         this.setupListeners();
         return Promise.resolve();
     }
+    /**
+     * @deprecated
+     */
     async registerIdentifiedUser(options) {
+        return this.loginUser(options);
+    }
+    async loginUser(options) {
         options = objectKeysCamelToSnakeCase(options);
         window.Intercom('update', options);
         return Promise.resolve();
     }
+    /**
+     * @deprecated
+     */
     async registerUnidentifiedUser() {
+        return this.loginUnidentifiedUser();
+    }
+    async loginUnidentifiedUser() {
         throw this.unimplemented('Not implemented on web.');
     }
     async updateUser(options) {
@@ -43,6 +55,10 @@ export class IntercomWeb extends WebPlugin {
     }
     async displayHelpCenter() {
         throw this.unimplemented('Not implemented on web.');
+    }
+    async displayArticle(options) {
+        window.Intercom('showArticle', options.articleId);
+        return Promise.resolve();
     }
     async hideMessenger() {
         window.Intercom('hide');

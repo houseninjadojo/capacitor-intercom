@@ -19,6 +19,8 @@ const initialize = (appId, timeout = 0) => {
         const i = function (...args) {
             i.c(args);
         };
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
         i.q = [];
         i.c = function (...args) {
             i.q.push(args);
@@ -31,6 +33,8 @@ const initialize = (appId, timeout = 0) => {
                 s.async = true;
                 s.src = 'https://widget.intercom.io/widget/' + appId;
                 const x = d.getElementsByTagName('script')[0];
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
                 x.parentNode.insertBefore(s, x);
             }, timeout);
         };

@@ -38,6 +38,8 @@ var capacitorIntercom = (function (exports, core) {
             const i = function (...args) {
                 i.c(args);
             };
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             i.q = [];
             i.c = function (...args) {
                 i.q.push(args);
@@ -50,6 +52,8 @@ var capacitorIntercom = (function (exports, core) {
                     s.async = true;
                     s.src = 'https://widget.intercom.io/widget/' + appId;
                     const x = d.getElementsByTagName('script')[0];
+                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                    // @ts-ignore
                     x.parentNode.insertBefore(s, x);
                 }, timeout);
             };
@@ -76,12 +80,24 @@ var capacitorIntercom = (function (exports, core) {
             this.setupListeners();
             return Promise.resolve();
         }
+        /**
+         * @deprecated
+         */
         async registerIdentifiedUser(options) {
+            return this.loginUser(options);
+        }
+        async loginUser(options) {
             options = objectKeysCamelToSnakeCase(options);
             window.Intercom('update', options);
             return Promise.resolve();
         }
+        /**
+         * @deprecated
+         */
         async registerUnidentifiedUser() {
+            return this.loginUnidentifiedUser();
+        }
+        async loginUnidentifiedUser() {
             throw this.unimplemented('Not implemented on web.');
         }
         async updateUser(options) {
@@ -107,6 +123,10 @@ var capacitorIntercom = (function (exports, core) {
         }
         async displayHelpCenter() {
             throw this.unimplemented('Not implemented on web.');
+        }
+        async displayArticle(options) {
+            window.Intercom('showArticle', options.articleId);
+            return Promise.resolve();
         }
         async hideMessenger() {
             window.Intercom('hide');

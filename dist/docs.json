@@ -24,6 +24,22 @@
         "slug": "boot"
       },
       {
+        "name": "loginUser",
+        "signature": "(options: { userId?: string; email?: string; }) => any",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ userId?: string | undefined; email?: string | undefined; }"
+          }
+        ],
+        "returns": "any",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "loginuser"
+      },
+      {
         "name": "registerIdentifiedUser",
         "signature": "(options: { userId?: string; email?: string; }) => any",
         "parameters": [
@@ -38,6 +54,16 @@
         "docs": "",
         "complexTypes": [],
         "slug": "registeridentifieduser"
+      },
+      {
+        "name": "loginUnidentifiedUser",
+        "signature": "() => any",
+        "parameters": [],
+        "returns": "any",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "loginunidentifieduser"
       },
       {
         "name": "registerUnidentifiedUser",
@@ -128,6 +154,22 @@
         "docs": "",
         "complexTypes": [],
         "slug": "displayhelpcenter"
+      },
+      {
+        "name": "displayArticle",
+        "signature": "(options: { articleId: string; }) => any",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ articleId: string; }"
+          }
+        ],
+        "returns": "any",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "displayarticle"
       },
       {
         "name": "hideMessenger",

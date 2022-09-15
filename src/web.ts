@@ -31,6 +31,9 @@ export class IntercomWeb extends WebPlugin implements IntercomPlugin {
     return Promise.resolve();
   }
 
+  /**
+   * @deprecated
+   */
   async registerIdentifiedUser(options: { userId?: string; email?: string }): Promise<void> {
     return this.loginUser(options);
   }
@@ -41,6 +44,9 @@ export class IntercomWeb extends WebPlugin implements IntercomPlugin {
     return Promise.resolve();
   }
 
+  /**
+   * @deprecated
+   */
   async registerUnidentifiedUser(): Promise<void> {
     return this.loginUnidentifiedUser();
   }
