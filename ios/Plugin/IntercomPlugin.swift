@@ -55,11 +55,12 @@ public class IntercomPlugin: CAPPlugin {
 
   @objc func loginUser(_ call: CAPPluginCall) {
     let attributes = ICMUserAttributes()
+    attributes.
+    if let userId = call.getString("userId") {
+      attributes.userId = userId
+    }
     if let email = call.getString("email") {
       attributes.email = email
-    }
-    if let userId = call.getString("userId") {
-      attributes.name = userId
     }
     Intercom.loginUser(with: attributes) { result in
       switch result {
@@ -214,7 +215,7 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func setUserHash(_ call: CAPPluginCall) {
-    if let userHash = call.getString("userHash") {
+    if let userHash = call.getString("hmac") {
       Intercom.setUserHash(userHash)
       call.resolve()
     } else {
