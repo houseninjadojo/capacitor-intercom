@@ -32,12 +32,13 @@ public class IntercomPlugin: CAPPlugin {
       return
     }
     Intercom.setDeviceToken(deviceToken) { error in
-      throw error
+      guard let error = error else { return }
+      print("Error setting device token: \(error.localizedDescription)")
     }
   }
 
   @objc func onUnreadConversationCountChange() {
-    DispatchQueue.global.async {
+    DispatchQueue.global(qos: .default).async {
       let unreadCount = Intercom.unreadConversationCount()
       self.notifyListeners("onUnreadCountChange", data: ["value":unreadCount])
     }
@@ -54,18 +55,18 @@ public class IntercomPlugin: CAPPlugin {
 
   @objc func loginUser(_ call: CAPPluginCall) {
     let attributes = ICMUserAttributes()
-    if (call.hasOption("email")) {
-      attributes.email = call.getString("email")
+    if let email = call.getString("email") {
+      attributes.email = email
     }
-    if (call.hasOption("userId")) {
-      attributes.name = call.getAny("userId") as? String
+    if let userId = call.getString("userId") {
+      attributes.name = userId
     }
     Intercom.loginUser(with: attributes) { result in
       switch result {
       case .success:
         call.resolve()
       case .failure(let error):
-        call.reject(error.localizedDescription, error.code, error)
+        call.reject(error.localizedDescription, String((error as NSError).code), error)
       }
     }
   }
@@ -76,7 +77,7 @@ public class IntercomPlugin: CAPPlugin {
       case .success:
         call.resolve()
       case .failure(let error):
-        call.reject(error.localizedDescription, error.code, error)
+        call.reject(error.localizedDescription, String((error as NSError).code), error)
       }
     }
   }
@@ -88,8 +89,8 @@ public class IntercomPlugin: CAPPlugin {
 
   @objc func updateUser(_ call: CAPPluginCall) {
     let attributes = ICMUserAttributes()
-    if let userId = call.getValue("userId") {
-      attributes.userId = userId as? String
+    if let userId = call.getString("userId") {
+      attributes.userId = userId
     }
     if let email = call.getString("email") {
       attributes.email = email
@@ -111,7 +112,7 @@ public class IntercomPlugin: CAPPlugin {
       case .success:
         call.resolve()
       case .failure(let error):
-        call.reject(error.localizedDescription, error.code, error)
+        call.reject(error.localizedDescription, String((error as NSError).code), error)
       }
     }
   }
@@ -163,7 +164,7 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func displayArticle(_ call: CAPPluginCall) {
-    if let articleId = call.getValue("articleId") as String? {
+    if let articleId = call.getString("articleId") {
       DispatchQueue.main.async {
         Intercom.presentArticle(articleId)
         call.resolve()
@@ -202,7 +203,7 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func displayCarousel(_ call: CAPPluginCall) {
-    if let carouselId = call.getValue("carouselId") as String? {
+    if let carouselId = call.getString("carouselId") {
       DispatchQueue.main.async {
         Intercom.presentCarousel(carouselId)
         call.resolve()
