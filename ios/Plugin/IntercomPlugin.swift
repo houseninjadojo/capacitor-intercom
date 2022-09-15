@@ -55,7 +55,6 @@ public class IntercomPlugin: CAPPlugin {
 
   @objc func loginUser(_ call: CAPPluginCall) {
     let attributes = ICMUserAttributes()
-    attributes.
     if let userId = call.getString("userId") {
       attributes.userId = userId
     }
