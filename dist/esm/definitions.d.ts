@@ -68,7 +68,7 @@ export interface IntercomUserUpdateOptions {
     name?: string;
     phone?: string;
     languageOverride?: string;
-    customAttributes: {
+    customAttributes?: {
         [key: string]: any;
     };
 }
@@ -91,7 +91,7 @@ export interface IntercomSettings {
     created_at?: Date;
     name?: string;
     phone?: string;
-    last_request_at: Date;
+    last_request_at?: Date;
     unsubscribed_from_emails?: boolean;
     language_override?: string;
     utm_campaign?: string;

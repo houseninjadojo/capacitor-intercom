@@ -690,7 +690,7 @@
           "tags": [],
           "docs": "",
           "complexTypes": [],
-          "type": "{ [key: string]: any; }"
+          "type": "{ [key: string]: any; } | undefined"
         }
       ]
     },
