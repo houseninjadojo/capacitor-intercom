@@ -39,7 +39,7 @@ export interface IntercomPlugin {
     listenerFunc: () => void,
   ): Promise<PluginListenerHandle> & PluginListenerHandle;
   addListener(
-    eventName: 'windowWDidShow',
+    eventName: 'windowDidShow',
     listenerFunc: () => void,
   ): Promise<PluginListenerHandle> & PluginListenerHandle;
   addListener(

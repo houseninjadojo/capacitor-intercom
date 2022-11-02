@@ -364,12 +364,12 @@
       },
       {
         "name": "addListener",
-        "signature": "(eventName: 'windowWDidShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "signature": "(eventName: 'windowDidShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
         "parameters": [
           {
             "name": "eventName",
             "docs": "",
-            "type": "'windowWDidShow'"
+            "type": "'windowDidShow'"
           },
           {
             "name": "listenerFunc",
@@ -383,7 +383,7 @@
         "complexTypes": [
           "PluginListenerHandle"
         ],
-        "slug": "addlistenerwindowwdidshow"
+        "slug": "addlistenerwindowdidshow"
       },
       {
         "name": "addListener",

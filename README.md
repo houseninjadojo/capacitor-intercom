@@ -186,7 +186,7 @@ Now you should be set to go. Try to run your client using `ionic cap run android
 * [`unreadConversationCount()`](#unreadconversationcount)
 * [`addListener('onUnreadCountChange', ...)`](#addlisteneronunreadcountchange)
 * [`addListener('windowWillShow', ...)`](#addlistenerwindowwillshow)
-* [`addListener('windowWDidShow', ...)`](#addlistenerwindowwdidshow)
+* [`addListener('windowDidShow', ...)`](#addlistenerwindowdidshow)
 * [`addListener('windowWillHide', ...)`](#addlistenerwindowwillhide)
 * [`addListener('windowDidHide', ...)`](#addlistenerwindowdidhide)
 * [`addListener('didStartNewConversation', ...)`](#addlistenerdidstartnewconversation)
@@ -491,16 +491,16 @@ addListener(eventName: 'windowWillShow', listenerFunc: () => void) => Promise<Pl
 --------------------
 
 
-### addListener('windowWDidShow', ...)
+### addListener('windowDidShow', ...)
 
 ```typescript
-addListener(eventName: 'windowWDidShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+addListener(eventName: 'windowDidShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
 ```
 
-| Param              | Type                          |
-| ------------------ | ----------------------------- |
-| **`eventName`**    | <code>'windowWDidShow'</code> |
-| **`listenerFunc`** | <code>() =&gt; void</code>    |
+| Param              | Type                         |
+| ------------------ | ---------------------------- |
+| **`eventName`**    | <code>'windowDidShow'</code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>   |
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
