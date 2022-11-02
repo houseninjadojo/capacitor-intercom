@@ -25,4 +25,6 @@ CAP_PLUGIN(IntercomPlugin, "Intercom",
            CAP_PLUGIN_METHOD(setUserHash, CAPPluginReturnNone);
            CAP_PLUGIN_METHOD(setBottomPadding, CAPPluginReturnNone);
            CAP_PLUGIN_METHOD(unreadConversationCount, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(removeAllListeners, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(removeListener, CAPPluginReturnNone);
 )
