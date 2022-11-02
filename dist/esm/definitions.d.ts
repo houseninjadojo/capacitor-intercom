@@ -45,6 +45,15 @@ export interface IntercomPlugin {
     receivePush(notification: IntercomPushNotificationData): Promise<void>;
     unreadConversationCount(): Promise<UnreadConversationCount>;
     addListener(eventName: 'onUnreadCountChange', listenerFunc: UnreadCountChangeListener): Promise<PluginListenerHandle> & PluginListenerHandle;
+    addListener(eventName: 'windowWillShow', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+    addListener(eventName: 'windowWDidShow', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+    addListener(eventName: 'windowWillHide', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+    addListener(eventName: 'windowDidHide', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+    addListener(eventName: 'didStartNewConversation', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+    addListener(eventName: 'helpCenterWillShow', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+    addListener(eventName: 'helpCenterDidShow', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+    addListener(eventName: 'helpCenterWillHide', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+    addListener(eventName: 'helpCenterDidHide', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
 }
 export interface IntercomPushNotificationData {
     conversation_id: string;

@@ -98,8 +98,8 @@ export class IntercomWeb extends WebPlugin {
         return Promise.resolve(payload);
     }
     setupListeners() {
-        window.Intercom('onHide', this.notifyListeners('onHide', null));
-        window.Intercom('onShow', this.notifyListeners('onHide', null));
+        window.Intercom('onHide', this.notifyListeners('windowDidHide', null));
+        window.Intercom('onShow', this.notifyListeners('windowWDidShow', null));
         window.Intercom('onUnreadCountChange', (unreadCount) => {
             this._unreadConversationCount = unreadCount;
             this.notifyListeners('onUnreadCountChange', unreadCount);

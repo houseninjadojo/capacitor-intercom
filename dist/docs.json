@@ -322,12 +322,12 @@
           {
             "name": "eventName",
             "docs": "",
-            "type": "\"onUnreadCountChange\""
+            "type": "'onUnreadCountChange'"
           },
           {
             "name": "listenerFunc",
             "docs": "",
-            "type": "(state: UnreadConversationCount) => void"
+            "type": "UnreadCountChangeListener"
           }
         ],
         "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
@@ -337,7 +337,214 @@
           "PluginListenerHandle",
           "UnreadCountChangeListener"
         ],
-        "slug": "addlistener"
+        "slug": "addlisteneronunreadcountchange"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'windowWillShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'windowWillShow'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "() => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle"
+        ],
+        "slug": "addlistenerwindowwillshow"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'windowWDidShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'windowWDidShow'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "() => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle"
+        ],
+        "slug": "addlistenerwindowwdidshow"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'windowWillHide', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'windowWillHide'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "() => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle"
+        ],
+        "slug": "addlistenerwindowwillhide"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'windowDidHide', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'windowDidHide'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "() => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle"
+        ],
+        "slug": "addlistenerwindowdidhide"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'didStartNewConversation', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'didStartNewConversation'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "() => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle"
+        ],
+        "slug": "addlistenerdidstartnewconversation"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'helpCenterWillShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'helpCenterWillShow'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "() => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle"
+        ],
+        "slug": "addlistenerhelpcenterwillshow"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'helpCenterDidShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'helpCenterDidShow'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "() => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle"
+        ],
+        "slug": "addlistenerhelpcenterdidshow"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'helpCenterWillHide', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'helpCenterWillHide'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "() => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle"
+        ],
+        "slug": "addlistenerhelpcenterwillhide"
+      },
+      {
+        "name": "addListener",
+        "signature": "(eventName: 'helpCenterDidHide', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle",
+        "parameters": [
+          {
+            "name": "eventName",
+            "docs": "",
+            "type": "'helpCenterDidHide'"
+          },
+          {
+            "name": "listenerFunc",
+            "docs": "",
+            "type": "() => void"
+          }
+        ],
+        "returns": "Promise<PluginListenerHandle> & PluginListenerHandle",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "PluginListenerHandle"
+        ],
+        "slug": "addlistenerhelpcenterdidhide"
       }
     ],
     "properties": []
@@ -434,7 +641,7 @@
           "complexTypes": [
             "Date"
           ],
-          "type": "Date | undefined"
+          "type": "Date"
         },
         {
           "name": "name",
@@ -457,7 +664,7 @@
           "complexTypes": [
             "Date"
           ],
-          "type": "Date | undefined"
+          "type": "Date"
         },
         {
           "name": "unsubscribed_from_emails",
@@ -508,7 +715,7 @@
           "complexTypes": [
             "IntercomAvatar"
           ],
-          "type": "IntercomAvatar | undefined"
+          "type": "IntercomAvatar"
         },
         {
           "name": "user_hash",
@@ -524,7 +731,7 @@
           "complexTypes": [
             "IntercomCompany"
           ],
-          "type": "IntercomCompany | undefined"
+          "type": "IntercomCompany"
         },
         {
           "name": "companies",
@@ -1360,7 +1567,7 @@
           "complexTypes": [
             "Date"
           ],
-          "type": "Date | undefined"
+          "type": "Date"
         },
         {
           "name": "remote_created_at",
@@ -1369,7 +1576,7 @@
           "complexTypes": [
             "Date"
           ],
-          "type": "Date | undefined"
+          "type": "Date"
         },
         {
           "name": "plan",
@@ -1606,5 +1813,21 @@
       ]
     }
   ],
-  "enums": []
+  "enums": [],
+  "typeAliases": [
+    {
+      "name": "UnreadCountChangeListener",
+      "slug": "unreadcountchangelistener",
+      "docs": "",
+      "types": [
+        {
+          "text": "(state: UnreadConversationCount): void",
+          "complexTypes": [
+            "UnreadConversationCount"
+          ]
+        }
+      ]
+    }
+  ],
+  "pluginConfigs": []
 }

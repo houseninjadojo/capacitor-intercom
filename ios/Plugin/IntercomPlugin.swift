@@ -9,8 +9,8 @@ import Intercom
 @objc(IntercomPlugin)
 public class IntercomPlugin: CAPPlugin {
   public override func load() {
-    let apiKey = getConfigValue("iosApiKey") as? String ?? "ADD_IN_CAPACITOR_CONFIG_JSON"
-    let appId = getConfigValue("iosAppId") as? String ?? "ADD_IN_CAPACITOR_CONFIG_JSON"
+    let apiKey = getConfig().getString("iosApiKey") ?? "ADD_IN_CAPACITOR_CONFIG_JSON"
+    let appId = getConfig().getString("iosAppId") ?? "ADD_IN_CAPACITOR_CONFIG_JSON"
     Intercom.setApiKey(apiKey, forAppId: appId)
 
     NotificationCenter.default.addObserver(self,
@@ -20,12 +20,59 @@ public class IntercomPlugin: CAPPlugin {
     )
 
     NotificationCenter.default.addObserver(self,
-      selector: #selector(onUnreadConversationCountChange),
+      selector: #selector(self.onUnreadConversationCountChange),
           name: NSNotification.Name.IntercomUnreadConversationCountDidChange,
         object: nil
     )
-  }
 
+    NotificationCenter.default.addObserver(self,
+      selector: #selector(self.intercomNotifier(notification:)),
+          name: NSNotification.Name.IntercomWindowWillShow,
+        object: "windowWillShow"
+    )
+    NotificationCenter.default.addObserver(self,
+      selector: #selector(self.intercomNotifier(notification:)),
+          name: NSNotification.Name.IntercomWindowDidShow,
+        object: "windowWDidShow"
+    )
+    NotificationCenter.default.addObserver(self,
+      selector: #selector(self.intercomNotifier(notification:)),
+          name: NSNotification.Name.IntercomWindowWillHide,
+        object: "windowWillHide"
+    )
+    NotificationCenter.default.addObserver(self,
+      selector: #selector(self.intercomNotifier(notification:)),
+          name: NSNotification.Name.IntercomWindowDidHide,
+        object: "windowDidHide"
+    )
+
+    NotificationCenter.default.addObserver(self,
+      selector: #selector(self.intercomNotifier(notification:)),
+          name: NSNotification.Name.IntercomDidStartNewConversation,
+        object: "didStartNewConversation"
+    )
+
+    NotificationCenter.default.addObserver(self,
+      selector: #selector(self.intercomNotifier(notification:)),
+          name: NSNotification.Name.IntercomHelpCenterWillShow,
+        object: "helpCenterWillShow"
+    )
+    NotificationCenter.default.addObserver(self,
+      selector: #selector(self.intercomNotifier(notification:)),
+          name: NSNotification.Name.IntercomHelpCenterDidShow,
+        object: "helpCenterDidShow"
+    )
+    NotificationCenter.default.addObserver(self,
+      selector: #selector(intercomNotifier(notification:)),
+          name: NSNotification.Name.IntercomHelpCenterWillHide,
+        object: "helpCenterWillHide"
+    )
+    NotificationCenter.default.addObserver(self,
+      selector: #selector(self.intercomNotifier(notification:)),
+          name: NSNotification.Name.IntercomHelpCenterDidHide,
+        object: "helpCenterDidHide"
+    )
+  }
 
   @objc func didRegisterWithToken(notification: NSNotification) {
     guard let deviceToken = notification.object as? Data else {
@@ -41,6 +88,12 @@ public class IntercomPlugin: CAPPlugin {
     DispatchQueue.global(qos: .default).async {
       let unreadCount = Intercom.unreadConversationCount()
       self.notifyListeners("onUnreadCountChange", data: ["value":unreadCount])
+    }
+  }
+
+  @objc func intercomNotifier(notification: NSNotification) {
+    DispatchQueue.global(qos: .default).async {
+      self.notifyListeners(notification.object as! String, data: nil)
     }
   }
 

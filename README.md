@@ -46,27 +46,6 @@ Sync native files:
 npx cap sync
 ```
 
-## API
-
-- boot
-- registerIdentifiedUser
-- registerUnidentifiedUser
-- updateUser
-- logout
-- logEvent
-- displayMessenger
-- displayMessageComposer
-- displayHelpCenter
-- hideMessenger
-- displayLauncher
-- hideLauncher
-- displayInAppMessages
-- hideInAppMessages
-- displayCarousel
-- setUserHash
-- setBottomPadding
-- unreadConversationCount
-
 ## Usage
 
 ### Web Only
@@ -177,6 +156,632 @@ Intercom.addListener('onUnreadCountChange', ({ value }) => {
 Now you should be set to go. Try to run your client using `ionic cap run android --livereload`.
 
 > Tip: every time you change a native code you may need to clean up the cache (Build > Clean Project | Build > Rebuild Project) and then run the app again.
+
+## API
+
+<docgen-index>
+
+* [`boot(...)`](#boot)
+* [`loginUser(...)`](#loginuser)
+* [`registerIdentifiedUser(...)`](#registeridentifieduser)
+* [`loginUnidentifiedUser()`](#loginunidentifieduser)
+* [`registerUnidentifiedUser()`](#registerunidentifieduser)
+* [`updateUser(...)`](#updateuser)
+* [`logout()`](#logout)
+* [`logEvent(...)`](#logevent)
+* [`displayMessenger()`](#displaymessenger)
+* [`displayMessageComposer(...)`](#displaymessagecomposer)
+* [`displayHelpCenter()`](#displayhelpcenter)
+* [`displayArticle(...)`](#displayarticle)
+* [`hideMessenger()`](#hidemessenger)
+* [`displayLauncher()`](#displaylauncher)
+* [`hideLauncher()`](#hidelauncher)
+* [`displayInAppMessages()`](#displayinappmessages)
+* [`hideInAppMessages()`](#hideinappmessages)
+* [`displayCarousel(...)`](#displaycarousel)
+* [`setUserHash(...)`](#setuserhash)
+* [`setBottomPadding(...)`](#setbottompadding)
+* [`sendPushTokenToIntercom(...)`](#sendpushtokentointercom)
+* [`receivePush(...)`](#receivepush)
+* [`unreadConversationCount()`](#unreadconversationcount)
+* [`addListener('onUnreadCountChange', ...)`](#addlisteneronunreadcountchange)
+* [`addListener('windowWillShow', ...)`](#addlistenerwindowwillshow)
+* [`addListener('windowWDidShow', ...)`](#addlistenerwindowwdidshow)
+* [`addListener('windowWillHide', ...)`](#addlistenerwindowwillhide)
+* [`addListener('windowDidHide', ...)`](#addlistenerwindowdidhide)
+* [`addListener('didStartNewConversation', ...)`](#addlistenerdidstartnewconversation)
+* [`addListener('helpCenterWillShow', ...)`](#addlistenerhelpcenterwillshow)
+* [`addListener('helpCenterDidShow', ...)`](#addlistenerhelpcenterdidshow)
+* [`addListener('helpCenterWillHide', ...)`](#addlistenerhelpcenterwillhide)
+* [`addListener('helpCenterDidHide', ...)`](#addlistenerhelpcenterdidhide)
+* [Interfaces](#interfaces)
+* [Type Aliases](#type-aliases)
+
+</docgen-index>
+
+<docgen-api>
+<!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
+
+### boot(...)
+
+```typescript
+boot(options: IntercomSettings) => Promise<void>
+```
+
+| Param         | Type                                                          |
+| ------------- | ------------------------------------------------------------- |
+| **`options`** | <code><a href="#intercomsettings">IntercomSettings</a></code> |
+
+--------------------
+
+
+### loginUser(...)
+
+```typescript
+loginUser(options: { userId?: string; email?: string; }) => Promise<void>
+```
+
+| Param         | Type                                              |
+| ------------- | ------------------------------------------------- |
+| **`options`** | <code>{ userId?: string; email?: string; }</code> |
+
+--------------------
+
+
+### registerIdentifiedUser(...)
+
+```typescript
+registerIdentifiedUser(options: { userId?: string; email?: string; }) => Promise<void>
+```
+
+| Param         | Type                                              |
+| ------------- | ------------------------------------------------- |
+| **`options`** | <code>{ userId?: string; email?: string; }</code> |
+
+--------------------
+
+
+### loginUnidentifiedUser()
+
+```typescript
+loginUnidentifiedUser() => Promise<void>
+```
+
+--------------------
+
+
+### registerUnidentifiedUser()
+
+```typescript
+registerUnidentifiedUser() => Promise<void>
+```
+
+--------------------
+
+
+### updateUser(...)
+
+```typescript
+updateUser(options: IntercomUserUpdateOptions) => Promise<void>
+```
+
+| Param         | Type                                                                            |
+| ------------- | ------------------------------------------------------------------------------- |
+| **`options`** | <code><a href="#intercomuserupdateoptions">IntercomUserUpdateOptions</a></code> |
+
+--------------------
+
+
+### logout()
+
+```typescript
+logout() => Promise<void>
+```
+
+--------------------
+
+
+### logEvent(...)
+
+```typescript
+logEvent(options: { name: string; data?: any; }) => Promise<void>
+```
+
+| Param         | Type                                       |
+| ------------- | ------------------------------------------ |
+| **`options`** | <code>{ name: string; data?: any; }</code> |
+
+--------------------
+
+
+### displayMessenger()
+
+```typescript
+displayMessenger() => Promise<void>
+```
+
+--------------------
+
+
+### displayMessageComposer(...)
+
+```typescript
+displayMessageComposer(options: { message: string; }) => Promise<void>
+```
+
+| Param         | Type                              |
+| ------------- | --------------------------------- |
+| **`options`** | <code>{ message: string; }</code> |
+
+--------------------
+
+
+### displayHelpCenter()
+
+```typescript
+displayHelpCenter() => Promise<void>
+```
+
+--------------------
+
+
+### displayArticle(...)
+
+```typescript
+displayArticle(options: { articleId: string; }) => Promise<void>
+```
+
+| Param         | Type                                |
+| ------------- | ----------------------------------- |
+| **`options`** | <code>{ articleId: string; }</code> |
+
+--------------------
+
+
+### hideMessenger()
+
+```typescript
+hideMessenger() => Promise<void>
+```
+
+--------------------
+
+
+### displayLauncher()
+
+```typescript
+displayLauncher() => Promise<void>
+```
+
+--------------------
+
+
+### hideLauncher()
+
+```typescript
+hideLauncher() => Promise<void>
+```
+
+--------------------
+
+
+### displayInAppMessages()
+
+```typescript
+displayInAppMessages() => Promise<void>
+```
+
+--------------------
+
+
+### hideInAppMessages()
+
+```typescript
+hideInAppMessages() => Promise<void>
+```
+
+--------------------
+
+
+### displayCarousel(...)
+
+```typescript
+displayCarousel(options: { carouselId: string; }) => Promise<void>
+```
+
+| Param         | Type                                 |
+| ------------- | ------------------------------------ |
+| **`options`** | <code>{ carouselId: string; }</code> |
+
+--------------------
+
+
+### setUserHash(...)
+
+```typescript
+setUserHash(options: { hmac: string; }) => Promise<void>
+```
+
+| Param         | Type                           |
+| ------------- | ------------------------------ |
+| **`options`** | <code>{ hmac: string; }</code> |
+
+--------------------
+
+
+### setBottomPadding(...)
+
+```typescript
+setBottomPadding(options: { value: string; }) => Promise<void>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: string; }</code> |
+
+--------------------
+
+
+### sendPushTokenToIntercom(...)
+
+```typescript
+sendPushTokenToIntercom(options: { value: string; }) => Promise<void>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: string; }</code> |
+
+--------------------
+
+
+### receivePush(...)
+
+```typescript
+receivePush(notification: IntercomPushNotificationData) => Promise<void>
+```
+
+| Param              | Type                                                                                  |
+| ------------------ | ------------------------------------------------------------------------------------- |
+| **`notification`** | <code><a href="#intercompushnotificationdata">IntercomPushNotificationData</a></code> |
+
+--------------------
+
+
+### unreadConversationCount()
+
+```typescript
+unreadConversationCount() => Promise<UnreadConversationCount>
+```
+
+**Returns:** <code>Promise&lt;<a href="#unreadconversationcount">UnreadConversationCount</a>&gt;</code>
+
+--------------------
+
+
+### addListener('onUnreadCountChange', ...)
+
+```typescript
+addListener(eventName: 'onUnreadCountChange', listenerFunc: UnreadCountChangeListener) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+| Param              | Type                                                                            |
+| ------------------ | ------------------------------------------------------------------------------- |
+| **`eventName`**    | <code>'onUnreadCountChange'</code>                                              |
+| **`listenerFunc`** | <code><a href="#unreadcountchangelistener">UnreadCountChangeListener</a></code> |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### addListener('windowWillShow', ...)
+
+```typescript
+addListener(eventName: 'windowWillShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+| Param              | Type                          |
+| ------------------ | ----------------------------- |
+| **`eventName`**    | <code>'windowWillShow'</code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>    |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### addListener('windowWDidShow', ...)
+
+```typescript
+addListener(eventName: 'windowWDidShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+| Param              | Type                          |
+| ------------------ | ----------------------------- |
+| **`eventName`**    | <code>'windowWDidShow'</code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>    |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### addListener('windowWillHide', ...)
+
+```typescript
+addListener(eventName: 'windowWillHide', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+| Param              | Type                          |
+| ------------------ | ----------------------------- |
+| **`eventName`**    | <code>'windowWillHide'</code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>    |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### addListener('windowDidHide', ...)
+
+```typescript
+addListener(eventName: 'windowDidHide', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+| Param              | Type                         |
+| ------------------ | ---------------------------- |
+| **`eventName`**    | <code>'windowDidHide'</code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>   |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### addListener('didStartNewConversation', ...)
+
+```typescript
+addListener(eventName: 'didStartNewConversation', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+| Param              | Type                                   |
+| ------------------ | -------------------------------------- |
+| **`eventName`**    | <code>'didStartNewConversation'</code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>             |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### addListener('helpCenterWillShow', ...)
+
+```typescript
+addListener(eventName: 'helpCenterWillShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+| Param              | Type                              |
+| ------------------ | --------------------------------- |
+| **`eventName`**    | <code>'helpCenterWillShow'</code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>        |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### addListener('helpCenterDidShow', ...)
+
+```typescript
+addListener(eventName: 'helpCenterDidShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+| Param              | Type                             |
+| ------------------ | -------------------------------- |
+| **`eventName`**    | <code>'helpCenterDidShow'</code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>       |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### addListener('helpCenterWillHide', ...)
+
+```typescript
+addListener(eventName: 'helpCenterWillHide', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+| Param              | Type                              |
+| ------------------ | --------------------------------- |
+| **`eventName`**    | <code>'helpCenterWillHide'</code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>        |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### addListener('helpCenterDidHide', ...)
+
+```typescript
+addListener(eventName: 'helpCenterDidHide', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
+```
+
+| Param              | Type                             |
+| ------------------ | -------------------------------- |
+| **`eventName`**    | <code>'helpCenterDidHide'</code> |
+| **`listenerFunc`** | <code>() =&gt; void</code>       |
+
+**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### Interfaces
+
+
+#### IntercomSettings
+
+| Prop                           | Type                                                        |
+| ------------------------------ | ----------------------------------------------------------- |
+| **`app_id`**                   | <code>string</code>                                         |
+| **`custom_launcher_selector`** | <code>string</code>                                         |
+| **`alignment`**                | <code>string</code>                                         |
+| **`vertical_padding`**         | <code>number</code>                                         |
+| **`horizontal_padding`**       | <code>number</code>                                         |
+| **`hide_default_launcher`**    | <code>boolean</code>                                        |
+| **`session_duration`**         | <code>number</code>                                         |
+| **`action_color`**             | <code>string</code>                                         |
+| **`background_color`**         | <code>string</code>                                         |
+| **`email`**                    | <code>string</code>                                         |
+| **`user_id`**                  | <code>string</code>                                         |
+| **`created_at`**               | <code><a href="#date">Date</a></code>                       |
+| **`name`**                     | <code>string</code>                                         |
+| **`phone`**                    | <code>string</code>                                         |
+| **`last_request_at`**          | <code><a href="#date">Date</a></code>                       |
+| **`unsubscribed_from_emails`** | <code>boolean</code>                                        |
+| **`language_override`**        | <code>string</code>                                         |
+| **`utm_campaign`**             | <code>string</code>                                         |
+| **`utm_content`**              | <code>string</code>                                         |
+| **`utm_source`**               | <code>string</code>                                         |
+| **`utm_term`**                 | <code>string</code>                                         |
+| **`avatar`**                   | <code><a href="#intercomavatar">IntercomAvatar</a></code>   |
+| **`user_hash`**                | <code>string</code>                                         |
+| **`company`**                  | <code><a href="#intercomcompany">IntercomCompany</a></code> |
+| **`companies`**                | <code>IntercomCompany[]</code>                              |
+
+
+#### Date
+
+Enables basic storage and retrieval of dates and times.
+
+| Method                 | Signature                                                                                                    | Description                                                                                                                             |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **toString**           | () =&gt; string                                                                                              | Returns a string representation of a date. The format of the string depends on the locale.                                              |
+| **toDateString**       | () =&gt; string                                                                                              | Returns a date as a string value.                                                                                                       |
+| **toTimeString**       | () =&gt; string                                                                                              | Returns a time as a string value.                                                                                                       |
+| **toLocaleString**     | () =&gt; string                                                                                              | Returns a value as a string value appropriate to the host environment's current locale.                                                 |
+| **toLocaleDateString** | () =&gt; string                                                                                              | Returns a date as a string value appropriate to the host environment's current locale.                                                  |
+| **toLocaleTimeString** | () =&gt; string                                                                                              | Returns a time as a string value appropriate to the host environment's current locale.                                                  |
+| **valueOf**            | () =&gt; number                                                                                              | Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC.                                                      |
+| **getTime**            | () =&gt; number                                                                                              | Gets the time value in milliseconds.                                                                                                    |
+| **getFullYear**        | () =&gt; number                                                                                              | Gets the year, using local time.                                                                                                        |
+| **getUTCFullYear**     | () =&gt; number                                                                                              | Gets the year using Universal Coordinated Time (UTC).                                                                                   |
+| **getMonth**           | () =&gt; number                                                                                              | Gets the month, using local time.                                                                                                       |
+| **getUTCMonth**        | () =&gt; number                                                                                              | Gets the month of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                             |
+| **getDate**            | () =&gt; number                                                                                              | Gets the day-of-the-month, using local time.                                                                                            |
+| **getUTCDate**         | () =&gt; number                                                                                              | Gets the day-of-the-month, using Universal Coordinated Time (UTC).                                                                      |
+| **getDay**             | () =&gt; number                                                                                              | Gets the day of the week, using local time.                                                                                             |
+| **getUTCDay**          | () =&gt; number                                                                                              | Gets the day of the week using Universal Coordinated Time (UTC).                                                                        |
+| **getHours**           | () =&gt; number                                                                                              | Gets the hours in a date, using local time.                                                                                             |
+| **getUTCHours**        | () =&gt; number                                                                                              | Gets the hours value in a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                       |
+| **getMinutes**         | () =&gt; number                                                                                              | Gets the minutes of a <a href="#date">Date</a> object, using local time.                                                                |
+| **getUTCMinutes**      | () =&gt; number                                                                                              | Gets the minutes of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                           |
+| **getSeconds**         | () =&gt; number                                                                                              | Gets the seconds of a <a href="#date">Date</a> object, using local time.                                                                |
+| **getUTCSeconds**      | () =&gt; number                                                                                              | Gets the seconds of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                           |
+| **getMilliseconds**    | () =&gt; number                                                                                              | Gets the milliseconds of a <a href="#date">Date</a>, using local time.                                                                  |
+| **getUTCMilliseconds** | () =&gt; number                                                                                              | Gets the milliseconds of a <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                      |
+| **getTimezoneOffset**  | () =&gt; number                                                                                              | Gets the difference in minutes between the time on the local computer and Universal Coordinated Time (UTC).                             |
+| **setTime**            | (time: number) =&gt; number                                                                                  | Sets the date and time value in the <a href="#date">Date</a> object.                                                                    |
+| **setMilliseconds**    | (ms: number) =&gt; number                                                                                    | Sets the milliseconds value in the <a href="#date">Date</a> object using local time.                                                    |
+| **setUTCMilliseconds** | (ms: number) =&gt; number                                                                                    | Sets the milliseconds value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                              |
+| **setSeconds**         | (sec: number, ms?: number \| undefined) =&gt; number                                                         | Sets the seconds value in the <a href="#date">Date</a> object using local time.                                                         |
+| **setUTCSeconds**      | (sec: number, ms?: number \| undefined) =&gt; number                                                         | Sets the seconds value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                   |
+| **setMinutes**         | (min: number, sec?: number \| undefined, ms?: number \| undefined) =&gt; number                              | Sets the minutes value in the <a href="#date">Date</a> object using local time.                                                         |
+| **setUTCMinutes**      | (min: number, sec?: number \| undefined, ms?: number \| undefined) =&gt; number                              | Sets the minutes value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                   |
+| **setHours**           | (hours: number, min?: number \| undefined, sec?: number \| undefined, ms?: number \| undefined) =&gt; number | Sets the hour value in the <a href="#date">Date</a> object using local time.                                                            |
+| **setUTCHours**        | (hours: number, min?: number \| undefined, sec?: number \| undefined, ms?: number \| undefined) =&gt; number | Sets the hours value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                     |
+| **setDate**            | (date: number) =&gt; number                                                                                  | Sets the numeric day-of-the-month value of the <a href="#date">Date</a> object using local time.                                        |
+| **setUTCDate**         | (date: number) =&gt; number                                                                                  | Sets the numeric day of the month in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                        |
+| **setMonth**           | (month: number, date?: number \| undefined) =&gt; number                                                     | Sets the month value in the <a href="#date">Date</a> object using local time.                                                           |
+| **setUTCMonth**        | (month: number, date?: number \| undefined) =&gt; number                                                     | Sets the month value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                     |
+| **setFullYear**        | (year: number, month?: number \| undefined, date?: number \| undefined) =&gt; number                         | Sets the year of the <a href="#date">Date</a> object using local time.                                                                  |
+| **setUTCFullYear**     | (year: number, month?: number \| undefined, date?: number \| undefined) =&gt; number                         | Sets the year value in the <a href="#date">Date</a> object using Universal Coordinated Time (UTC).                                      |
+| **toUTCString**        | () =&gt; string                                                                                              | Returns a date converted to a string using Universal Coordinated Time (UTC).                                                            |
+| **toISOString**        | () =&gt; string                                                                                              | Returns a date as a string value in ISO format.                                                                                         |
+| **toJSON**             | (key?: any) =&gt; string                                                                                     | Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization. |
+
+
+#### IntercomAvatar
+
+| Prop            | Type                |
+| --------------- | ------------------- |
+| **`type`**      | <code>string</code> |
+| **`image_url`** | <code>string</code> |
+
+
+#### IntercomCompany
+
+| Prop                    | Type                                  |
+| ----------------------- | ------------------------------------- |
+| **`company_id`**        | <code>string</code>                   |
+| **`name`**              | <code>string</code>                   |
+| **`created_at`**        | <code><a href="#date">Date</a></code> |
+| **`remote_created_at`** | <code><a href="#date">Date</a></code> |
+| **`plan`**              | <code>string</code>                   |
+| **`monthly_spend`**     | <code>number</code>                   |
+| **`user_count`**        | <code>number</code>                   |
+| **`size`**              | <code>number</code>                   |
+| **`website`**           | <code>string</code>                   |
+| **`industry`**          | <code>string</code>                   |
+
+
+#### IntercomUserUpdateOptions
+
+| Prop                   | Type                                 |
+| ---------------------- | ------------------------------------ |
+| **`userId`**           | <code>string</code>                  |
+| **`email`**            | <code>string</code>                  |
+| **`name`**             | <code>string</code>                  |
+| **`phone`**            | <code>string</code>                  |
+| **`languageOverride`** | <code>string</code>                  |
+| **`customAttributes`** | <code>{ [key: string]: any; }</code> |
+
+
+#### IntercomPushNotificationData
+
+| Prop                            | Type                |
+| ------------------------------- | ------------------- |
+| **`conversation_id`**           | <code>string</code> |
+| **`message`**                   | <code>string</code> |
+| **`body`**                      | <code>string</code> |
+| **`author_name`**               | <code>string</code> |
+| **`image_url`**                 | <code>string</code> |
+| **`app_name`**                  | <code>string</code> |
+| **`receiver`**                  | <code>string</code> |
+| **`conversation_part_type`**    | <code>string</code> |
+| **`intercom_push_type`**        | <code>string</code> |
+| **`uri`**                       | <code>string</code> |
+| **`push_only_conversation_id`** | <code>string</code> |
+| **`instance_id`**               | <code>string</code> |
+| **`title`**                     | <code>string</code> |
+| **`priority`**                  | <code>number</code> |
+
+
+#### UnreadConversationCount
+
+| Prop        | Type                |
+| ----------- | ------------------- |
+| **`value`** | <code>string</code> |
+
+
+#### PluginListenerHandle
+
+| Prop         | Type                                      |
+| ------------ | ----------------------------------------- |
+| **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
+
+
+### Type Aliases
+
+
+#### UnreadCountChangeListener
+
+<code>(state: <a href="#unreadconversationcount">UnreadConversationCount</a>): void</code>
+
+</docgen-api>
 
 ## License
 
