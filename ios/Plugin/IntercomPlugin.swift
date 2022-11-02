@@ -15,62 +15,62 @@ public class IntercomPlugin: CAPPlugin {
 
     NotificationCenter.default.addObserver(self,
       selector: #selector(self.didRegisterWithToken(notification:)),
-          name: Notification.Name.capacitorDidRegisterForRemoteNotifications,
+          name: .capacitorDidRegisterForRemoteNotifications,
         object: nil
     )
 
     NotificationCenter.default.addObserver(self,
       selector: #selector(self.onUnreadConversationCountChange),
-          name: NSNotification.Name.IntercomUnreadConversationCountDidChange,
+          name: .IntercomUnreadConversationCountDidChange,
         object: nil
     )
 
     NotificationCenter.default.addObserver(self,
       selector: #selector(self.intercomNotifier(notification:)),
-          name: NSNotification.Name.IntercomWindowWillShow,
-        object: "windowWillShow"
+          name: .IntercomWindowWillShow,
+        object: nil
     )
     NotificationCenter.default.addObserver(self,
       selector: #selector(self.intercomNotifier(notification:)),
-          name: NSNotification.Name.IntercomWindowDidShow,
-        object: "windowWDidShow"
+          name: .IntercomWindowDidShow,
+        object: nil
     )
     NotificationCenter.default.addObserver(self,
       selector: #selector(self.intercomNotifier(notification:)),
-          name: NSNotification.Name.IntercomWindowWillHide,
-        object: "windowWillHide"
+          name: .IntercomWindowWillHide,
+        object: nil
     )
     NotificationCenter.default.addObserver(self,
       selector: #selector(self.intercomNotifier(notification:)),
-          name: NSNotification.Name.IntercomWindowDidHide,
-        object: "windowDidHide"
-    )
-
-    NotificationCenter.default.addObserver(self,
-      selector: #selector(self.intercomNotifier(notification:)),
-          name: NSNotification.Name.IntercomDidStartNewConversation,
-        object: "didStartNewConversation"
+          name: .IntercomWindowDidHide,
+        object: nil
     )
 
     NotificationCenter.default.addObserver(self,
       selector: #selector(self.intercomNotifier(notification:)),
-          name: NSNotification.Name.IntercomHelpCenterWillShow,
-        object: "helpCenterWillShow"
+          name: .IntercomDidStartNewConversation,
+        object: nil
+    )
+
+    NotificationCenter.default.addObserver(self,
+      selector: #selector(self.intercomNotifier(notification:)),
+          name: .IntercomHelpCenterWillShow,
+        object: nil
     )
     NotificationCenter.default.addObserver(self,
       selector: #selector(self.intercomNotifier(notification:)),
-          name: NSNotification.Name.IntercomHelpCenterDidShow,
-        object: "helpCenterDidShow"
+          name: .IntercomHelpCenterDidShow,
+        object: nil
     )
     NotificationCenter.default.addObserver(self,
       selector: #selector(intercomNotifier(notification:)),
           name: NSNotification.Name.IntercomHelpCenterWillHide,
-        object: "helpCenterWillHide"
+        object: nil
     )
     NotificationCenter.default.addObserver(self,
       selector: #selector(self.intercomNotifier(notification:)),
-          name: NSNotification.Name.IntercomHelpCenterDidHide,
-        object: "helpCenterDidHide"
+          name: .IntercomHelpCenterDidHide,
+        object: nil
     )
   }
 
@@ -92,8 +92,31 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func intercomNotifier(notification: NSNotification) {
+    let name: String
+    switch notification.name {
+    case .IntercomWindowWillShow:
+      name = "windowWillShow"
+    case .IntercomWindowDidShow:
+      name = "windowDidShow"
+    case .IntercomWindowWillHide:
+      name = "windowWillHide"
+    case .IntercomWindowDidHide:
+      name = "windowDidHide"
+    case .IntercomDidStartNewConversation:
+      name = "didStartNewConversation"
+    case .IntercomHelpCenterWillShow:
+      name = "helpCenterWillShow"
+    case .IntercomHelpCenterDidShow:
+      name = "helpCenterDidShow"
+    case .IntercomHelpCenterWillHide:
+      name = "helpCenterWillHide"
+    case .IntercomHelpCenterDidHide:
+      name = "helpCenterDidHide"
+    default:
+      return
+    }
     DispatchQueue.global(qos: .default).async {
-      self.notifyListeners(notification.object as! String, data: nil)
+      self.notifyListeners(name, data: nil)
     }
   }
 
