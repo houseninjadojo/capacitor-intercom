@@ -1,6 +1,6 @@
 {
   "name": "@houseninjadojo/capacitor-intercom",
-  "version": "4.0.2-beta.2",
+  "version": "4.0.3",
   "description": "Enable Intercom features for Capacitor apps",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",

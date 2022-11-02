@@ -54,6 +54,7 @@ export interface IntercomPlugin {
     addListener(eventName: 'helpCenterDidShow', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
     addListener(eventName: 'helpCenterWillHide', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
     addListener(eventName: 'helpCenterDidHide', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
+    removeAllListeners(): Promise<void>;
 }
 export interface IntercomPushNotificationData {
     conversation_id: string;

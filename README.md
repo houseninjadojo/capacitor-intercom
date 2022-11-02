@@ -194,6 +194,7 @@ Now you should be set to go. Try to run your client using `ionic cap run android
 * [`addListener('helpCenterDidShow', ...)`](#addlistenerhelpcenterdidshow)
 * [`addListener('helpCenterWillHide', ...)`](#addlistenerhelpcenterwillhide)
 * [`addListener('helpCenterDidHide', ...)`](#addlistenerhelpcenterdidhide)
+* [`removeAllListeners()`](#removealllisteners)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
 
@@ -615,6 +616,15 @@ addListener(eventName: 'helpCenterDidHide', listenerFunc: () => void) => Promise
 | **`listenerFunc`** | <code>() =&gt; void</code>       |
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
+
+--------------------
+
+
+### removeAllListeners()
+
+```typescript
+removeAllListeners() => Promise<void>
+```
 
 --------------------
 

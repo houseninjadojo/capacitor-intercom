@@ -70,6 +70,7 @@ export interface IntercomPlugin {
     eventName: 'helpCenterDidHide',
     listenerFunc: () => void,
   ): Promise<PluginListenerHandle> & PluginListenerHandle;
+  removeAllListeners(): Promise<void>;
 }
 
 export interface IntercomPushNotificationData {

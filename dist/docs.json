@@ -545,6 +545,16 @@
           "PluginListenerHandle"
         ],
         "slug": "addlistenerhelpcenterdidhide"
+      },
+      {
+        "name": "removeAllListeners",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "removealllisteners"
       }
     ],
     "properties": []
