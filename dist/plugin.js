@@ -70,9 +70,6 @@ var capacitorIntercom = (function (exports, core) {
     };
 
     class IntercomWeb extends core.WebPlugin {
-        constructor() {
-            super();
-        }
         async boot(options) {
             options = objectKeysCamelToSnakeCase(options);
             initialize(options.app_id);

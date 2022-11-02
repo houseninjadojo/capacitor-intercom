@@ -2,9 +2,6 @@ import { WebPlugin } from '@capacitor/core';
 import { objectKeysCamelToSnakeCase } from './util';
 import { initialize as initializeWidget } from './widget';
 export class IntercomWeb extends WebPlugin {
-    constructor() {
-        super();
-    }
     async boot(options) {
         options = objectKeysCamelToSnakeCase(options);
         initializeWidget(options.app_id);

@@ -19,10 +19,6 @@ declare global {
 export class IntercomWeb extends WebPlugin implements IntercomPlugin {
   private _unreadConversationCount: string | undefined;
 
-  constructor() {
-    super();
-  }
-
   async boot(options: IntercomSettings): Promise<void> {
     options = objectKeysCamelToSnakeCase(options);
     initializeWidget(options.app_id);

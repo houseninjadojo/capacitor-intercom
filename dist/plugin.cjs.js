@@ -73,9 +73,6 @@ const initialize = (appId, timeout = 0) => {
 };
 
 class IntercomWeb extends core.WebPlugin {
-    constructor() {
-        super();
-    }
     async boot(options) {
         options = objectKeysCamelToSnakeCase(options);
         initialize(options.app_id);
