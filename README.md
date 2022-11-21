@@ -190,10 +190,6 @@ Now you should be set to go. Try to run your client using `ionic cap run android
 * [`addListener('windowWillHide', ...)`](#addlistenerwindowwillhide)
 * [`addListener('windowDidHide', ...)`](#addlistenerwindowdidhide)
 * [`addListener('didStartNewConversation', ...)`](#addlistenerdidstartnewconversation)
-* [`addListener('helpCenterWillShow', ...)`](#addlistenerhelpcenterwillshow)
-* [`addListener('helpCenterDidShow', ...)`](#addlistenerhelpcenterdidshow)
-* [`addListener('helpCenterWillHide', ...)`](#addlistenerhelpcenterwillhide)
-* [`addListener('helpCenterDidHide', ...)`](#addlistenerhelpcenterdidhide)
 * [`removeAllListeners()`](#removealllisteners)
 * [Interfaces](#interfaces)
 * [Type Aliases](#type-aliases)
@@ -550,70 +546,6 @@ addListener(eventName: 'didStartNewConversation', listenerFunc: () => void) => P
 | ------------------ | -------------------------------------- |
 | **`eventName`**    | <code>'didStartNewConversation'</code> |
 | **`listenerFunc`** | <code>() =&gt; void</code>             |
-
-**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
-
---------------------
-
-
-### addListener('helpCenterWillShow', ...)
-
-```typescript
-addListener(eventName: 'helpCenterWillShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
-```
-
-| Param              | Type                              |
-| ------------------ | --------------------------------- |
-| **`eventName`**    | <code>'helpCenterWillShow'</code> |
-| **`listenerFunc`** | <code>() =&gt; void</code>        |
-
-**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
-
---------------------
-
-
-### addListener('helpCenterDidShow', ...)
-
-```typescript
-addListener(eventName: 'helpCenterDidShow', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
-```
-
-| Param              | Type                             |
-| ------------------ | -------------------------------- |
-| **`eventName`**    | <code>'helpCenterDidShow'</code> |
-| **`listenerFunc`** | <code>() =&gt; void</code>       |
-
-**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
-
---------------------
-
-
-### addListener('helpCenterWillHide', ...)
-
-```typescript
-addListener(eventName: 'helpCenterWillHide', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
-```
-
-| Param              | Type                              |
-| ------------------ | --------------------------------- |
-| **`eventName`**    | <code>'helpCenterWillHide'</code> |
-| **`listenerFunc`** | <code>() =&gt; void</code>        |
-
-**Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
-
---------------------
-
-
-### addListener('helpCenterDidHide', ...)
-
-```typescript
-addListener(eventName: 'helpCenterDidHide', listenerFunc: () => void) => Promise<PluginListenerHandle> & PluginListenerHandle
-```
-
-| Param              | Type                             |
-| ------------------ | -------------------------------- |
-| **`eventName`**    | <code>'helpCenterDidHide'</code> |
-| **`listenerFunc`** | <code>() =&gt; void</code>       |
 
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 

@@ -104,14 +104,6 @@ public class IntercomPlugin: CAPPlugin {
       name = "windowDidHide"
     case .IntercomDidStartNewConversation:
       name = "didStartNewConversation"
-    case .IntercomHelpCenterWillShow:
-      name = "helpCenterWillShow"
-    case .IntercomHelpCenterDidShow:
-      name = "helpCenterDidShow"
-    case .IntercomHelpCenterWillHide:
-      name = "helpCenterWillHide"
-    case .IntercomHelpCenterDidHide:
-      name = "helpCenterDidHide"
     default:
       return
     }

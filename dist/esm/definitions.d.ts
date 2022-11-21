@@ -50,10 +50,6 @@ export interface IntercomPlugin {
     addListener(eventName: 'windowWillHide', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
     addListener(eventName: 'windowDidHide', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
     addListener(eventName: 'didStartNewConversation', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
-    addListener(eventName: 'helpCenterWillShow', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
-    addListener(eventName: 'helpCenterDidShow', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
-    addListener(eventName: 'helpCenterWillHide', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
-    addListener(eventName: 'helpCenterDidHide', listenerFunc: () => void): Promise<PluginListenerHandle> & PluginListenerHandle;
     removeAllListeners(): Promise<void>;
 }
 export interface IntercomPushNotificationData {
