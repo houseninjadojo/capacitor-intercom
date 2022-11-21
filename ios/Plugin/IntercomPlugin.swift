@@ -51,27 +51,6 @@ public class IntercomPlugin: CAPPlugin {
           name: .IntercomDidStartNewConversation,
         object: nil
     )
-
-    NotificationCenter.default.addObserver(self,
-      selector: #selector(self.intercomNotifier(notification:)),
-          name: .IntercomHelpCenterWillShow,
-        object: nil
-    )
-    NotificationCenter.default.addObserver(self,
-      selector: #selector(self.intercomNotifier(notification:)),
-          name: .IntercomHelpCenterDidShow,
-        object: nil
-    )
-    NotificationCenter.default.addObserver(self,
-      selector: #selector(intercomNotifier(notification:)),
-          name: NSNotification.Name.IntercomHelpCenterWillHide,
-        object: nil
-    )
-    NotificationCenter.default.addObserver(self,
-      selector: #selector(self.intercomNotifier(notification:)),
-          name: .IntercomHelpCenterDidHide,
-        object: nil
-    )
   }
 
   @objc func didRegisterWithToken(notification: NSNotification) {
