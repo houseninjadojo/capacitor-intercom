@@ -18,6 +18,8 @@ export interface IntercomPlugin {
         data?: any;
     }): Promise<void>;
     displayMessenger(): Promise<void>;
+    show(): Promise<void>;
+    displayInbox(): Promise<void>;
     displayMessageComposer(options: {
         message: string;
     }): Promise<void>;
@@ -25,14 +27,19 @@ export interface IntercomPlugin {
     displayArticle(options: {
         articleId: string;
     }): Promise<void>;
-    hideMessenger(): Promise<void>;
-    displayLauncher(): Promise<void>;
-    hideLauncher(): Promise<void>;
-    displayInAppMessages(): Promise<void>;
-    hideInAppMessages(): Promise<void>;
     displayCarousel(options: {
         carouselId: string;
     }): Promise<void>;
+    displayLauncher(): Promise<void>;
+    enableLauncher(): Promise<void>;
+    displayInAppMessages(): Promise<void>;
+    enableMessengerPopups(): Promise<void>;
+    hideMessenger(): Promise<void>;
+    hide(): Promise<void>;
+    hideLauncher(): Promise<void>;
+    disableLauncher(): Promise<void>;
+    hideInAppMessages(): Promise<void>;
+    disableMessengerPopups(): Promise<void>;
     setUserHash(options: {
         hmac: string;
     }): Promise<void>;

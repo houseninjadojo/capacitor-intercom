@@ -114,6 +114,13 @@ class IntercomWeb extends core.WebPlugin {
         return Promise.resolve();
     }
     async displayMessenger() {
+        return this.show();
+    }
+    async show() {
+        window.Intercom('show');
+        return Promise.resolve();
+    }
+    async displayInbox() {
         window.Intercom('show');
         return Promise.resolve();
     }
@@ -132,16 +139,32 @@ class IntercomWeb extends core.WebPlugin {
         window.Intercom('hide');
         return Promise.resolve();
     }
+    async hide() {
+        window.Intercom('hide');
+        return Promise.resolve();
+    }
     async displayLauncher() {
+        throw this.unimplemented('Not implemented on web.');
+    }
+    async enableLauncher() {
         throw this.unimplemented('Not implemented on web.');
     }
     async hideLauncher() {
         throw this.unimplemented('Not implemented on web.');
     }
+    async disableLauncher() {
+        throw this.unimplemented('Not implemented on web.');
+    }
     async displayInAppMessages() {
         throw this.unimplemented('Not implemented on web.');
     }
+    async enableMessengerPopups() {
+        throw this.unimplemented('Not implemented on web.');
+    }
     async hideInAppMessages() {
+        throw this.unimplemented('Not implemented on web.');
+    }
+    async disableMessengerPopups() {
         throw this.unimplemented('Not implemented on web.');
     }
     async displayCarousel(options) {

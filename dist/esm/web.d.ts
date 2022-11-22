@@ -31,6 +31,8 @@ export declare class IntercomWeb extends WebPlugin implements IntercomPlugin {
         data?: any;
     }): Promise<void>;
     displayMessenger(): Promise<void>;
+    show(): Promise<void>;
+    displayInbox(): Promise<void>;
     displayMessageComposer(options: {
         message: string;
     }): Promise<void>;
@@ -39,10 +41,15 @@ export declare class IntercomWeb extends WebPlugin implements IntercomPlugin {
         articleId: string;
     }): Promise<void>;
     hideMessenger(): Promise<void>;
+    hide(): Promise<void>;
     displayLauncher(): Promise<void>;
+    enableLauncher(): Promise<void>;
     hideLauncher(): Promise<void>;
+    disableLauncher(): Promise<void>;
     displayInAppMessages(): Promise<void>;
+    enableMessengerPopups(): Promise<void>;
     hideInAppMessages(): Promise<void>;
+    disableMessengerPopups(): Promise<void>;
     displayCarousel(options: {
         carouselId: string;
     }): Promise<void>;

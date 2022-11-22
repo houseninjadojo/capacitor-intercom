@@ -68,6 +68,15 @@ export class IntercomWeb extends WebPlugin implements IntercomPlugin {
   }
 
   async displayMessenger(): Promise<void> {
+    return this.show();
+  }
+
+  async show(): Promise<void> {
+    window.Intercom('show');
+    return Promise.resolve();
+  }
+
+  async displayInbox(): Promise<void> {
     window.Intercom('show');
     return Promise.resolve();
   }
@@ -91,7 +100,16 @@ export class IntercomWeb extends WebPlugin implements IntercomPlugin {
     return Promise.resolve();
   }
 
+  async hide(): Promise<void> {
+    window.Intercom('hide');
+    return Promise.resolve();
+  }
+
   async displayLauncher(): Promise<void> {
+    throw this.unimplemented('Not implemented on web.');
+  }
+
+  async enableLauncher(): Promise<void> {
     throw this.unimplemented('Not implemented on web.');
   }
 
@@ -99,11 +117,23 @@ export class IntercomWeb extends WebPlugin implements IntercomPlugin {
     throw this.unimplemented('Not implemented on web.');
   }
 
+  async disableLauncher(): Promise<void> {
+    throw this.unimplemented('Not implemented on web.');
+  }
+
   async displayInAppMessages(): Promise<void> {
     throw this.unimplemented('Not implemented on web.');
   }
 
+  async enableMessengerPopups(): Promise<void> {
+    throw this.unimplemented('Not implemented on web.');
+  }
+
   async hideInAppMessages(): Promise<void> {
+    throw this.unimplemented('Not implemented on web.');
+  }
+
+  async disableMessengerPopups(): Promise<void> {
     throw this.unimplemented('Not implemented on web.');
   }
 

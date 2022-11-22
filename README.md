@@ -170,15 +170,22 @@ Now you should be set to go. Try to run your client using `ionic cap run android
 * [`logout()`](#logout)
 * [`logEvent(...)`](#logevent)
 * [`displayMessenger()`](#displaymessenger)
+* [`show()`](#show)
+* [`displayInbox()`](#displayinbox)
 * [`displayMessageComposer(...)`](#displaymessagecomposer)
 * [`displayHelpCenter()`](#displayhelpcenter)
 * [`displayArticle(...)`](#displayarticle)
-* [`hideMessenger()`](#hidemessenger)
-* [`displayLauncher()`](#displaylauncher)
-* [`hideLauncher()`](#hidelauncher)
-* [`displayInAppMessages()`](#displayinappmessages)
-* [`hideInAppMessages()`](#hideinappmessages)
 * [`displayCarousel(...)`](#displaycarousel)
+* [`displayLauncher()`](#displaylauncher)
+* [`enableLauncher()`](#enablelauncher)
+* [`displayInAppMessages()`](#displayinappmessages)
+* [`enableMessengerPopups()`](#enablemessengerpopups)
+* [`hideMessenger()`](#hidemessenger)
+* [`hide()`](#hide)
+* [`hideLauncher()`](#hidelauncher)
+* [`disableLauncher()`](#disablelauncher)
+* [`hideInAppMessages()`](#hideinappmessages)
+* [`disableMessengerPopups()`](#disablemessengerpopups)
 * [`setUserHash(...)`](#setuserhash)
 * [`setBottomPadding(...)`](#setbottompadding)
 * [`sendPushTokenToIntercom(...)`](#sendpushtokentointercom)
@@ -300,6 +307,24 @@ displayMessenger() => Promise<void>
 --------------------
 
 
+### show()
+
+```typescript
+show() => Promise<void>
+```
+
+--------------------
+
+
+### displayInbox()
+
+```typescript
+displayInbox() => Promise<void>
+```
+
+--------------------
+
+
 ### displayMessageComposer(...)
 
 ```typescript
@@ -335,11 +360,15 @@ displayArticle(options: { articleId: string; }) => Promise<void>
 --------------------
 
 
-### hideMessenger()
+### displayCarousel(...)
 
 ```typescript
-hideMessenger() => Promise<void>
+displayCarousel(options: { carouselId: string; }) => Promise<void>
 ```
+
+| Param         | Type                                 |
+| ------------- | ------------------------------------ |
+| **`options`** | <code>{ carouselId: string; }</code> |
 
 --------------------
 
@@ -353,10 +382,10 @@ displayLauncher() => Promise<void>
 --------------------
 
 
-### hideLauncher()
+### enableLauncher()
 
 ```typescript
-hideLauncher() => Promise<void>
+enableLauncher() => Promise<void>
 ```
 
 --------------------
@@ -371,6 +400,51 @@ displayInAppMessages() => Promise<void>
 --------------------
 
 
+### enableMessengerPopups()
+
+```typescript
+enableMessengerPopups() => Promise<void>
+```
+
+--------------------
+
+
+### hideMessenger()
+
+```typescript
+hideMessenger() => Promise<void>
+```
+
+--------------------
+
+
+### hide()
+
+```typescript
+hide() => Promise<void>
+```
+
+--------------------
+
+
+### hideLauncher()
+
+```typescript
+hideLauncher() => Promise<void>
+```
+
+--------------------
+
+
+### disableLauncher()
+
+```typescript
+disableLauncher() => Promise<void>
+```
+
+--------------------
+
+
 ### hideInAppMessages()
 
 ```typescript
@@ -380,15 +454,11 @@ hideInAppMessages() => Promise<void>
 --------------------
 
 
-### displayCarousel(...)
+### disableMessengerPopups()
 
 ```typescript
-displayCarousel(options: { carouselId: string; }) => Promise<void>
+disableMessengerPopups() => Promise<void>
 ```
-
-| Param         | Type                                 |
-| ------------- | ------------------------------------ |
-| **`options`** | <code>{ carouselId: string; }</code> |
 
 --------------------
 

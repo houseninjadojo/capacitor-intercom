@@ -130,6 +130,26 @@
         "slug": "displaymessenger"
       },
       {
+        "name": "show",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "show"
+      },
+      {
+        "name": "displayInbox",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "displayinbox"
+      },
+      {
         "name": "displayMessageComposer",
         "signature": "(options: { message: string; }) => Promise<void>",
         "parameters": [
@@ -172,56 +192,6 @@
         "slug": "displayarticle"
       },
       {
-        "name": "hideMessenger",
-        "signature": "() => Promise<void>",
-        "parameters": [],
-        "returns": "Promise<void>",
-        "tags": [],
-        "docs": "",
-        "complexTypes": [],
-        "slug": "hidemessenger"
-      },
-      {
-        "name": "displayLauncher",
-        "signature": "() => Promise<void>",
-        "parameters": [],
-        "returns": "Promise<void>",
-        "tags": [],
-        "docs": "",
-        "complexTypes": [],
-        "slug": "displaylauncher"
-      },
-      {
-        "name": "hideLauncher",
-        "signature": "() => Promise<void>",
-        "parameters": [],
-        "returns": "Promise<void>",
-        "tags": [],
-        "docs": "",
-        "complexTypes": [],
-        "slug": "hidelauncher"
-      },
-      {
-        "name": "displayInAppMessages",
-        "signature": "() => Promise<void>",
-        "parameters": [],
-        "returns": "Promise<void>",
-        "tags": [],
-        "docs": "",
-        "complexTypes": [],
-        "slug": "displayinappmessages"
-      },
-      {
-        "name": "hideInAppMessages",
-        "signature": "() => Promise<void>",
-        "parameters": [],
-        "returns": "Promise<void>",
-        "tags": [],
-        "docs": "",
-        "complexTypes": [],
-        "slug": "hideinappmessages"
-      },
-      {
         "name": "displayCarousel",
         "signature": "(options: { carouselId: string; }) => Promise<void>",
         "parameters": [
@@ -236,6 +206,106 @@
         "docs": "",
         "complexTypes": [],
         "slug": "displaycarousel"
+      },
+      {
+        "name": "displayLauncher",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "displaylauncher"
+      },
+      {
+        "name": "enableLauncher",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "enablelauncher"
+      },
+      {
+        "name": "displayInAppMessages",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "displayinappmessages"
+      },
+      {
+        "name": "enableMessengerPopups",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "enablemessengerpopups"
+      },
+      {
+        "name": "hideMessenger",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "hidemessenger"
+      },
+      {
+        "name": "hide",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "hide"
+      },
+      {
+        "name": "hideLauncher",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "hidelauncher"
+      },
+      {
+        "name": "disableLauncher",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "disablelauncher"
+      },
+      {
+        "name": "hideInAppMessages",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "hideinappmessages"
+      },
+      {
+        "name": "disableMessengerPopups",
+        "signature": "() => Promise<void>",
+        "parameters": [],
+        "returns": "Promise<void>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "disablemessengerpopups"
       },
       {
         "name": "setUserHash",

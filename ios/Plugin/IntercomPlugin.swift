@@ -180,11 +180,19 @@ public class IntercomPlugin: CAPPlugin {
     }
   }
 
+  @available(*, deprecated, message: "Use `show` instead")
   @objc func displayMessenger(_ call: CAPPluginCall) {
-    DispatchQueue.main.async {
-      Intercom.presentMessenger()
-      call.resolve()
-    }
+    self.show(call)
+  }
+
+  @objc func show(_ call: CAPPluginCall) {
+    Intercom.present()
+    call.resolve()
+  }
+
+  @objc func displayInbox(_ call: CAPPluginCall) {
+    Intercom.present(.messages)
+    call.resolve()
   }
 
   @objc func displayMessageComposer(_ call: CAPPluginCall) {
@@ -196,65 +204,74 @@ public class IntercomPlugin: CAPPlugin {
     }
   }
 
+  @available(*, deprecated, message: "Use `hide` instead")
   @objc func hideMessenger(_ call: CAPPluginCall) {
-    DispatchQueue.main.async {
-      Intercom.hide()
-      call.resolve()
-    }
+    self.hide(call)
+  }
+
+  @objc func hide(_ call: CAPPluginCall) {
+    Intercom.hide()
+    call.resolve()
   }
 
   @objc func displayHelpCenter(_ call: CAPPluginCall) {
-    DispatchQueue.main.async {
-      Intercom.presentHelpCenter()
-      call.resolve()
-    }
+    Intercom.present(.helpCenter)
+    call.resolve()
   }
 
   @objc func displayArticle(_ call: CAPPluginCall) {
     if let articleId = call.getString("articleId") {
-      DispatchQueue.main.async {
-        Intercom.presentArticle(articleId)
-        call.resolve()
-      }
+      Intercom.presentContent(.article(id: articleId))
+      call.resolve()
     } else {
       call.reject("articleId not provided to presentArticle.")
     }
   }
 
+  @available(*, deprecated, message: "Use `enableLauncher` instead")
   @objc func displayLauncher(_ call: CAPPluginCall) {
-    DispatchQueue.main.async {
-      Intercom.setLauncherVisible(true)
-      call.resolve()
-    }
+    self.enableLauncher(call)
   }
 
+  @objc func enableLauncher(_ call: CAPPluginCall) {
+    Intercom.setLauncherVisible(true)
+    call.resolve()
+  }
+
+  @available(*, deprecated, message: "Use `disableLauncher` instead")
   @objc func hideLauncher(_ call: CAPPluginCall) {
-    DispatchQueue.main.async {
-      Intercom.setLauncherVisible(false)
-      call.resolve()
-    }
+    self.disableLauncher(call)
   }
 
+  @objc func disableLauncher(_ call: CAPPluginCall) {
+    Intercom.setLauncherVisible(false)
+    call.resolve()
+  }
+
+  @available(*, deprecated, message: "Use `enableMessengerPopup` instead")
   @objc func displayInAppMessages(_ call: CAPPluginCall) {
-    DispatchQueue.main.async {
-      Intercom.setInAppMessagesVisible(true)
-      call.resolve()
-    }
+    self.enableMessengerPopup(call)
   }
 
+  @objc func enableMessengerPopups(_ call: CAPPluginCall) {
+    Intercom.setInAppMessagesVisible(true)
+    call.resolve()
+  }
+
+  @available(*, deprecated, message: "Use `disableMessengerPopups` instead")
   @objc func hideInAppMessages(_ call: CAPPluginCall) {
-    DispatchQueue.main.async {
-      Intercom.setInAppMessagesVisible(false)
-      call.resolve()
-    }
+    self.disableMessengerPopup(call)
+  }
+
+  @objc func disableMessengerPopups(_ call: CAPPluginCall) {
+    Intercom.setInAppMessagesVisible(false)
+    call.resolve()
   }
 
   @objc func displayCarousel(_ call: CAPPluginCall) {
     if let carouselId = call.getString("carouselId") {
-      DispatchQueue.main.async {
-        Intercom.presentCarousel(carouselId)
-        call.resolve()
-      }
+      Intercom.presentContent(.carousel(id: carouselId))
+      call.resolve()
     } else {
       call.reject("carouselId not provided to displayCarousel.")
     }
