@@ -57,14 +57,16 @@ public class IntercomPlugin: CAPPlugin {
     guard let deviceToken = notification.object as? Data else {
       return
     }
-    Intercom.setDeviceToken(deviceToken) { error in
-      guard let error = error else { return }
-      print("Error setting device token: \(error.localizedDescription)")
+    DispatchQueue.main.async {
+      Intercom.setDeviceToken(deviceToken) { error in
+        guard let error = error else { return }
+        print("Error setting device token: \(error.localizedDescription)")
+      }
     }
   }
 
   @objc func onUnreadConversationCountChange() {
-    DispatchQueue.global(qos: .default).async {
+    DispatchQueue.main.async {
       let unreadCount = Intercom.unreadConversationCount()
       self.notifyListeners("onUnreadCountChange", data: ["value":unreadCount])
     }
@@ -165,18 +167,22 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func logout(_ call: CAPPluginCall) {
-    Intercom.logout()
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.logout()
+      call.resolve()
+    }
   }
 
   @objc func logEvent(_ call: CAPPluginCall) {
-    if let eventName = call.getString("name") {
-      if let metaData = call.getObject("data") {
-        Intercom.logEvent(withName: eventName, metaData: metaData)
-      } else {
-        Intercom.logEvent(withName: eventName)
+    DispatchQueue.main.async {
+      if let eventName = call.getString("name") {
+        if let metaData = call.getObject("data") {
+          Intercom.logEvent(withName: eventName, metaData: metaData)
+        } else {
+          Intercom.logEvent(withName: eventName)
+        }
+        call.resolve()
       }
-      call.resolve()
     }
   }
 
@@ -186,21 +192,27 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func show(_ call: CAPPluginCall) {
-    Intercom.present()
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.present()
+      call.resolve()
+    }
   }
 
   @objc func displayInbox(_ call: CAPPluginCall) {
-    Intercom.present(.messages)
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.present(.messages)
+      call.resolve()
+    }
   }
 
   @objc func displayMessageComposer(_ call: CAPPluginCall) {
-    if let initialMessage = call.getString("message") {
-      Intercom.presentMessageComposer(initialMessage);
-      call.resolve()
-    } else {
-      call.reject("Enter an initial message")
+    DispatchQueue.main.async {
+      if let initialMessage = call.getString("message") {
+        Intercom.presentMessageComposer(initialMessage);
+        call.resolve()
+      } else {
+        call.reject("Enter an initial message")
+      }
     }
   }
 
@@ -210,21 +222,27 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func hide(_ call: CAPPluginCall) {
-    Intercom.hide()
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.hide()
+      call.resolve()
+    }
   }
 
   @objc func displayHelpCenter(_ call: CAPPluginCall) {
-    Intercom.present(.helpCenter)
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.present(.helpCenter)
+      call.resolve()
+    }
   }
 
   @objc func displayArticle(_ call: CAPPluginCall) {
-    if let articleId = call.getString("articleId") {
-      Intercom.presentContent(.article(id: articleId))
-      call.resolve()
-    } else {
-      call.reject("articleId not provided to presentArticle.")
+    DispatchQueue.main.async {
+      if let articleId = call.getString("articleId") {
+        Intercom.presentContent(.article(id: articleId))
+        call.resolve()
+      } else {
+        call.reject("articleId not provided to presentArticle.")
+      }
     }
   }
 
@@ -234,8 +252,10 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func enableLauncher(_ call: CAPPluginCall) {
-    Intercom.setLauncherVisible(true)
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.setLauncherVisible(true)
+      call.resolve()
+    }
   }
 
   @available(*, deprecated, message: "Use `disableLauncher` instead")
@@ -244,8 +264,10 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func disableLauncher(_ call: CAPPluginCall) {
-    Intercom.setLauncherVisible(false)
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.setLauncherVisible(false)
+      call.resolve()
+    }
   }
 
   @available(*, deprecated, message: "Use `enableMessengerPopup` instead")
@@ -254,8 +276,10 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func enableMessengerPopups(_ call: CAPPluginCall) {
-    Intercom.setInAppMessagesVisible(true)
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.setInAppMessagesVisible(true)
+      call.resolve()
+    }
   }
 
   @available(*, deprecated, message: "Use `disableMessengerPopups` instead")
@@ -264,16 +288,20 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func disableMessengerPopups(_ call: CAPPluginCall) {
-    Intercom.setInAppMessagesVisible(false)
-    call.resolve()
+    DispatchQueue.main.async {
+      Intercom.setInAppMessagesVisible(false)
+      call.resolve()
+    }
   }
 
   @objc func displayCarousel(_ call: CAPPluginCall) {
-    if let carouselId = call.getString("carouselId") {
-      Intercom.presentContent(.carousel(id: carouselId))
-      call.resolve()
-    } else {
-      call.reject("carouselId not provided to displayCarousel.")
+    DispatchQueue.main.async {
+      if let carouselId = call.getString("carouselId") {
+        Intercom.presentContent(.carousel(id: carouselId))
+        call.resolve()
+      } else {
+        call.reject("carouselId not provided to displayCarousel.")
+      }
     }
   }
 
@@ -297,9 +325,11 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func unreadConversationCount(_ call: CAPPluginCall) {
-    let value = Intercom.unreadConversationCount()
-    call.resolve([
-      "value": value
-    ])
+    DispatchQueue.main.async {
+      let value = Intercom.unreadConversationCount()
+      call.resolve([
+        "value": value
+      ])
+    }
   }
 }
