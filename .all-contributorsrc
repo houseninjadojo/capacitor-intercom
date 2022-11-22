@@ -103,7 +103,10 @@
       "contributions": [
         "code",
         "doc",
-        "maintenance"
+        "maintenance",
+        "example",
+        "platform",
+        "plugin"
       ]
     }
   ],

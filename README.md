@@ -1,16 +1,16 @@
 <p align="center"><br><img src="https://user-images.githubusercontent.com/236501/85893648-1c92e880-b7a8-11ea-926d-95355b8175c7.png" width="128" height="128" /></p>
 <h3 align="center">Capacitor Intercom</h3>
-<p align="center"><strong><code>@capacitor-community/intercom</code></strong></p>
+<p align="center"><strong><code>@houseninja/capacitor-intercom</code></strong></p>
 <p align="center">
-  Capacitor community plugin for enabling Intercom capabilities
+  Capacitor plugin for enabling Intercom capabilities
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/maintenance/yes/2021?style=flat-square" />
-  <a href="https://www.npmjs.com/package/@capacitor-community/intercom"><img src="https://img.shields.io/npm/l/@capacitor-community/intercom?style=flat-square" /></a>
+  <a href="https://www.npmjs.com/package/@houseninja/capacitor-intercom"><img src="https://img.shields.io/npm/l/@houseninja/capacitor-intercom?style=flat-square" /></a>
 <br>
-  <a href="https://www.npmjs.com/package/@capacitor-community/intercom"><img src="https://img.shields.io/npm/dw/@capacitor-community/intercom?style=flat-square" /></a>
-  <a href="https://www.npmjs.com/package/@capacitor-community/intercom"><img src="https://img.shields.io/npm/v/@capacitor-community/intercom?style=flat-square" /></a>
+  <a href="https://www.npmjs.com/package/@houseninja/capacitor-intercom"><img src="https://img.shields.io/npm/dw/@capacitor-community/intercom?style=flat-square" /></a>
+  <a href="https://www.npmjs.com/package/@houseninja/capacitor-intercom"><img src="https://img.shields.io/npm/v/@houseninja/capacitor-intercom?style=flat-square" /></a>
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-10-orange?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
@@ -18,26 +18,23 @@
 
 ## Maintainers
 
-| Maintainer   | GitHub                                  | Social                                    |
-| ------------ | --------------------------------------- | ----------------------------------------- |
-| Stewan Silva | [stewones](https://github.com/stewones) | [@stewones](https://twitter.com/stewones) |
-
-## Notice 🚀
-
-We're starting fresh under an official org. If you were using the previous npm package `capacitor-intercom`, please update your package.json to `@capacitor-community/intercom`. Check out [changelog](/CHANGELOG.md) for more info.
+| Maintainer      | GitHub                                              | Social                                    |
+| --------------- | --------------------------------------------------- | ----------------------------------------- |
+| Miles Zimmerman | [mileszim](https://github.com/mileszim)             | [@mileszim](https://twitter.com/mileszim) |
+| House Ninja     | [houseninjadojo](https://github.com/houseninjadojo) |                                           |
 
 ## Installation
 
 Using npm:
 
 ```bash
-npm install @houseninjadojo/capacitor-intercom
+npm install @houseninja/capacitor-intercom
 ```
 
 Using yarn:
 
 ```bash
-yarn add @houseninjadojo/capacitor-intercom
+yarn add @houseninjad/capacitor-intercom
 ```
 
 Sync native files:
@@ -53,7 +50,7 @@ npx cap sync
 For web, you must run `boot({ appId: <app-id> })` to initialize.
 
 ```js
-import { Intercom } from '@houseninjadojo/capacitor-intercom';
+import { Intercom } from '@houseninja/capacitor-intercom';
 
 Intercom.boot({
   appId: '12345',
@@ -67,14 +64,14 @@ Intercom.registerIdentifiedUser({
 });
 
 // show intercom
-Intercom.displayMessenger();
+Intercom.show();
 
 ```
 
 ### Web, iOS, Android
 
 ```js
-import { Intercom } from '@houseninjadojo/capacitor-intercom';
+import { Intercom } from '@houseninja/capacitor-intercom';
 import { PushNotifications } from '@capacitor/push-notifications';
 
 // Register for push notifications from Intercom
@@ -106,7 +103,7 @@ Intercom.addListener('onUnreadCountChange', ({ value }) => {
 
 - `ionic start my-cap-app --capacitor`
 - `cd my-cap-app`
-- `npm install —-save @capacitor-community/intercom`
+- `npm install —-save @houseninja/capacitor-intercom`
 - `mkdir www && touch www/index.html`
 - `npx cap add ios`
 - add intercom keys to capacitor's configuration file
@@ -133,7 +130,7 @@ Intercom.addListener('onUnreadCountChange', ({ value }) => {
 
 - `ionic start my-cap-app --capacitor`
 - `cd my-cap-app`
-- `npm install —-save @capacitor-community/intercom`
+- `npm install —-save @houseninja/capacitor-intercom`
 - `mkdir www && touch www/index.html`
 - `npx cap add android`
 - add intercom keys to capacitor's configuration file
@@ -161,45 +158,65 @@ Now you should be set to go. Try to run your client using `ionic cap run android
 
 <docgen-index>
 
-* [`boot(...)`](#boot)
-* [`loginUser(...)`](#loginuser)
-* [`registerIdentifiedUser(...)`](#registeridentifieduser)
-* [`loginUnidentifiedUser()`](#loginunidentifieduser)
-* [`registerUnidentifiedUser()`](#registerunidentifieduser)
-* [`updateUser(...)`](#updateuser)
-* [`logout()`](#logout)
-* [`logEvent(...)`](#logevent)
-* [`displayMessenger()`](#displaymessenger)
-* [`show()`](#show)
-* [`displayInbox()`](#displayinbox)
-* [`displayMessageComposer(...)`](#displaymessagecomposer)
-* [`displayHelpCenter()`](#displayhelpcenter)
-* [`displayArticle(...)`](#displayarticle)
-* [`displayCarousel(...)`](#displaycarousel)
-* [`displayLauncher()`](#displaylauncher)
-* [`enableLauncher()`](#enablelauncher)
-* [`displayInAppMessages()`](#displayinappmessages)
-* [`enableMessengerPopups()`](#enablemessengerpopups)
-* [`hideMessenger()`](#hidemessenger)
-* [`hide()`](#hide)
-* [`hideLauncher()`](#hidelauncher)
-* [`disableLauncher()`](#disablelauncher)
-* [`hideInAppMessages()`](#hideinappmessages)
-* [`disableMessengerPopups()`](#disablemessengerpopups)
-* [`setUserHash(...)`](#setuserhash)
-* [`setBottomPadding(...)`](#setbottompadding)
-* [`sendPushTokenToIntercom(...)`](#sendpushtokentointercom)
-* [`receivePush(...)`](#receivepush)
-* [`unreadConversationCount()`](#unreadconversationcount)
-* [`addListener('onUnreadCountChange', ...)`](#addlisteneronunreadcountchange)
-* [`addListener('windowWillShow', ...)`](#addlistenerwindowwillshow)
-* [`addListener('windowDidShow', ...)`](#addlistenerwindowdidshow)
-* [`addListener('windowWillHide', ...)`](#addlistenerwindowwillhide)
-* [`addListener('windowDidHide', ...)`](#addlistenerwindowdidhide)
-* [`addListener('didStartNewConversation', ...)`](#addlistenerdidstartnewconversation)
-* [`removeAllListeners()`](#removealllisteners)
-* [Interfaces](#interfaces)
-* [Type Aliases](#type-aliases)
+- [Maintainers](#maintainers)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Web Only](#web-only)
+  - [Web, iOS, Android](#web-ios-android)
+- [iOS setup](#ios-setup)
+- [Android setup](#android-setup)
+- [API](#api)
+  - [boot(...)](#boot)
+  - [loginUser(...)](#loginuser)
+  - [registerIdentifiedUser(...)](#registeridentifieduser)
+  - [loginUnidentifiedUser()](#loginunidentifieduser)
+  - [registerUnidentifiedUser()](#registerunidentifieduser)
+  - [updateUser(...)](#updateuser)
+  - [logout()](#logout)
+  - [logEvent(...)](#logevent)
+  - [displayMessenger()](#displaymessenger)
+  - [show()](#show)
+  - [displayInbox()](#displayinbox)
+  - [displayMessageComposer(...)](#displaymessagecomposer)
+  - [displayHelpCenter()](#displayhelpcenter)
+  - [displayArticle(...)](#displayarticle)
+  - [displayCarousel(...)](#displaycarousel)
+  - [displayLauncher()](#displaylauncher)
+  - [enableLauncher()](#enablelauncher)
+  - [displayInAppMessages()](#displayinappmessages)
+  - [enableMessengerPopups()](#enablemessengerpopups)
+  - [hideMessenger()](#hidemessenger)
+  - [hide()](#hide)
+  - [hideLauncher()](#hidelauncher)
+  - [disableLauncher()](#disablelauncher)
+  - [hideInAppMessages()](#hideinappmessages)
+  - [disableMessengerPopups()](#disablemessengerpopups)
+  - [setUserHash(...)](#setuserhash)
+  - [setBottomPadding(...)](#setbottompadding)
+  - [sendPushTokenToIntercom(...)](#sendpushtokentointercom)
+  - [receivePush(...)](#receivepush)
+  - [unreadConversationCount()](#unreadconversationcount)
+  - [addListener('onUnreadCountChange', ...)](#addlisteneronunreadcountchange-)
+  - [addListener('windowWillShow', ...)](#addlistenerwindowwillshow-)
+  - [addListener('windowDidShow', ...)](#addlistenerwindowdidshow-)
+  - [addListener('windowWillHide', ...)](#addlistenerwindowwillhide-)
+  - [addListener('windowDidHide', ...)](#addlistenerwindowdidhide-)
+  - [addListener('didStartNewConversation', ...)](#addlistenerdidstartnewconversation-)
+  - [removeAllListeners()](#removealllisteners)
+  - [Interfaces](#interfaces)
+    - [IntercomSettings](#intercomsettings)
+    - [Date](#date)
+    - [IntercomAvatar](#intercomavatar)
+    - [IntercomCompany](#intercomcompany)
+    - [IntercomUserUpdateOptions](#intercomuserupdateoptions)
+    - [IntercomPushNotificationData](#intercompushnotificationdata)
+    - [UnreadConversationCount](#unreadconversationcount-1)
+    - [PluginListenerHandle](#pluginlistenerhandle)
+  - [Type Aliases](#type-aliases)
+    - [UnreadCountChangeListener](#unreadcountchangelistener)
+- [License](#license)
+- [Example](#example)
+- [Contributors ✨](#contributors-)
 
 </docgen-index>
 
@@ -801,7 +818,7 @@ MIT
 
 ## Example
 
-- https://github.com/houseninjadojo/capacitor-community/blob/master/example
+- <https://github.com/@houseninja/capacitor-intercom/blob/master/example>
 
 ## Contributors ✨
 
@@ -811,20 +828,22 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
-  <tr>
-    <td align="center"><a href="https://twitter.com/stewones"><img src="https://avatars1.githubusercontent.com/u/719763?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Stew</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=stewones" title="Code">💻</a> <a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=stewones" title="Documentation">📖</a></td>
-    <td align="center"><a href="https://davidseek.com/"><img src="https://avatars2.githubusercontent.com/u/17073950?v=4?s=75" width="75px;" alt=""/><br /><sub><b>David Seek</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=davidseek" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/rnikitin"><img src="https://avatars3.githubusercontent.com/u/1829318?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Roman Nikitin</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=rnikitin" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/atomassoni"><img src="https://avatars1.githubusercontent.com/u/17362459?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Anne Tomassoni</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=atomassoni" title="Code">💻</a> <a href="https://github.com/houseninjadojo/capacitor-intercom/pulls?q=is%3Apr+reviewed-by%3Aatomassoni" title="Reviewed Pull Requests">👀</a></td>
-    <td align="center"><a href="https://github.com/mmodzelewski"><img src="https://avatars2.githubusercontent.com/u/7762633?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Maciej Modzelewski</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=mmodzelewski" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/spaghettiguru"><img src="https://avatars.githubusercontent.com/u/5624009?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Oleg Yuzvik</b></sub></a><br /><a href="#maintenance-spaghettiguru" title="Maintenance">🚧</a></td>
-    <td align="center"><a href="https://github.com/gcorreaalves"><img src="https://avatars.githubusercontent.com/u/983426?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Gustavo Corrêa Alves</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=gcorreaalves" title="Documentation">📖</a></td>
-  </tr>
-  <tr>
-    <td align="center"><a href="https://github.com/Jealvia"><img src="https://avatars.githubusercontent.com/u/28424830?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Jealvia</b></sub></a><br /><a href="#maintenance-Jealvia" title="Maintenance">🚧</a></td>
-    <td align="center"><a href="https://adamduren.com/"><img src="https://avatars.githubusercontent.com/u/581097?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Adam Duren</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=adamduren" title="Code">💻</a> <a href="#maintenance-adamduren" title="Maintenance">🚧</a></td>
-    <td align="center"><a href="https://github.com/mileszim"><img src="https://avatars.githubusercontent.com/u/1849508?v=4?s=75" width="75px;" alt=""/><br /><sub><b>Miles Zimmerman</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=mileszim" title="Code">💻</a> <a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=mileszim" title="Documentation">📖</a> <a href="#maintenance-mileszim" title="Maintenance">🚧</a></td>
-  </tr>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://twitter.com/stewones"><img src="https://avatars1.githubusercontent.com/u/719763?v=4?s=75" width="75px;" alt="Stew"/><br /><sub><b>Stew</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=stewones" title="Code">💻</a> <a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=stewones" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://davidseek.com/"><img src="https://avatars2.githubusercontent.com/u/17073950?v=4?s=75" width="75px;" alt="David Seek"/><br /><sub><b>David Seek</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=davidseek" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/rnikitin"><img src="https://avatars3.githubusercontent.com/u/1829318?v=4?s=75" width="75px;" alt="Roman Nikitin"/><br /><sub><b>Roman Nikitin</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=rnikitin" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/atomassoni"><img src="https://avatars1.githubusercontent.com/u/17362459?v=4?s=75" width="75px;" alt="Anne Tomassoni"/><br /><sub><b>Anne Tomassoni</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=atomassoni" title="Code">💻</a> <a href="https://github.com/houseninjadojo/capacitor-intercom/pulls?q=is%3Apr+reviewed-by%3Aatomassoni" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mmodzelewski"><img src="https://avatars2.githubusercontent.com/u/7762633?v=4?s=75" width="75px;" alt="Maciej Modzelewski"/><br /><sub><b>Maciej Modzelewski</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=mmodzelewski" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/spaghettiguru"><img src="https://avatars.githubusercontent.com/u/5624009?v=4?s=75" width="75px;" alt="Oleg Yuzvik"/><br /><sub><b>Oleg Yuzvik</b></sub></a><br /><a href="#maintenance-spaghettiguru" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/gcorreaalves"><img src="https://avatars.githubusercontent.com/u/983426?v=4?s=75" width="75px;" alt="Gustavo Corrêa Alves"/><br /><sub><b>Gustavo Corrêa Alves</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=gcorreaalves" title="Documentation">📖</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Jealvia"><img src="https://avatars.githubusercontent.com/u/28424830?v=4?s=75" width="75px;" alt="Jealvia"/><br /><sub><b>Jealvia</b></sub></a><br /><a href="#maintenance-Jealvia" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://adamduren.com/"><img src="https://avatars.githubusercontent.com/u/581097?v=4?s=75" width="75px;" alt="Adam Duren"/><br /><sub><b>Adam Duren</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=adamduren" title="Code">💻</a> <a href="#maintenance-adamduren" title="Maintenance">🚧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mileszim"><img src="https://avatars.githubusercontent.com/u/1849508?v=4?s=75" width="75px;" alt="Miles Zimmerman"/><br /><sub><b>Miles Zimmerman</b></sub></a><br /><a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=mileszim" title="Code">💻</a> <a href="https://github.com/houseninjadojo/capacitor-intercom/commits?author=mileszim" title="Documentation">📖</a> <a href="#maintenance-mileszim" title="Maintenance">🚧</a> <a href="#example-mileszim" title="Examples">💡</a> <a href="#platform-mileszim" title="Packaging/porting to new platform">📦</a> <a href="#plugin-mileszim" title="Plugin/utility libraries">🔌</a></td>
+    </tr>
+  </tbody>
 </table>
 
 <!-- markdownlint-restore -->
