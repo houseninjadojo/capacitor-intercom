@@ -250,7 +250,7 @@ public class IntercomPlugin: CAPPlugin {
 
   @available(*, deprecated, message: "Use `enableMessengerPopup` instead")
   @objc func displayInAppMessages(_ call: CAPPluginCall) {
-    self.enableMessengerPopup(call)
+    self.enableMessengerPopups(call)
   }
 
   @objc func enableMessengerPopups(_ call: CAPPluginCall) {
@@ -260,7 +260,7 @@ public class IntercomPlugin: CAPPlugin {
 
   @available(*, deprecated, message: "Use `disableMessengerPopups` instead")
   @objc func hideInAppMessages(_ call: CAPPluginCall) {
-    self.disableMessengerPopup(call)
+    self.disableMessengerPopups(call)
   }
 
   @objc func disableMessengerPopups(_ call: CAPPluginCall) {
