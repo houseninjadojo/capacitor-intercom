@@ -25,9 +25,9 @@ CAP_PLUGIN(IntercomPlugin, "Intercom",
           CAP_PLUGIN_METHOD(hideLauncher, CAPPluginReturnNone);
           CAP_PLUGIN_METHOD(disableLauncher, CAPPluginReturnNone);
           CAP_PLUGIN_METHOD(displayInAppMessages, CAPPluginReturnNone);
-          CAP_PLUGIN_METHOD(enableMessengerPopup, CAPPluginReturnNone);
+          CAP_PLUGIN_METHOD(enableMessengerPopups, CAPPluginReturnNone);
           CAP_PLUGIN_METHOD(hideInAppMessages, CAPPluginReturnNone);
-          CAP_PLUGIN_METHOD(disableMessengerPopup, CAPPluginReturnNone);
+          CAP_PLUGIN_METHOD(disableMessengerPopups, CAPPluginReturnNone);
           CAP_PLUGIN_METHOD(displayCarousel, CAPPluginReturnNone);
           CAP_PLUGIN_METHOD(setUserHash, CAPPluginReturnNone);
           CAP_PLUGIN_METHOD(setBottomPadding, CAPPluginReturnNone);
