@@ -11,7 +11,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.1'
+        classpath 'com.android.tools.build:gradle:7.4.2'
     }
 }
 
@@ -55,6 +55,6 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
-    implementation 'io.intercom.android:intercom-sdk:10.+'
-    implementation 'com.google.firebase:firebase-messaging:20.2.+'
+    implementation 'io.intercom.android:intercom-sdk:14.0.1'
+    implementation 'com.google.firebase:firebase-messaging:23.1.+'
 }

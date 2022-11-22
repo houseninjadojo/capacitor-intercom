@@ -153,10 +153,25 @@ public class IntercomPlugin extends Plugin {
         call.resolve();
     }
 
-    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    /**
+     * @deprecated use {@link IntercomPlugin#show(PluginCall)}
+     */
+    @Deprecated(forRemoval = true)
     public void displayMessenger(PluginCall call) {
+        return this.show(call);
+    }
+
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    public void show(PluginCall call) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        Intercom.client().displayMessenger();
+        Intercom.client().present(IntercomSpace.Home);
+        call.resolve();
+    }
+
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    public void displayInbox(PluginCall call) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Intercom.client().present(IntercomSpace.Messenger);
         call.resolve();
     }
 
@@ -169,43 +184,84 @@ public class IntercomPlugin extends Plugin {
 
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void displayHelpCenter(PluginCall call) {
-        Intercom.client().displayHelpCenter();
+        Intercom.client().present(IntercomSpace.HelpCenter);
         call.resolve();
     }
 
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void displayArticle(PluginCall call) {
         String articleId = call.getString("articleId");
-        Intercom.client().displayArticle(articleId);
+        Intercom.client().presentContent(IntercomContent.Article(articleId));
         call.resolve();
     }
 
-    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    /**
+     * @deprecated use {@link IntercomPlugin#hide(PluginCall)}
+     */
+    @Deprecated(forRemoval = true)
     public void hideMessenger(PluginCall call) {
+        return this.hide(call);
+    }
+
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    public void hide(PluginCall call) {
         Intercom.client().hideIntercom();
         call.resolve();
     }
 
-    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    /**
+     * @deprecated use {@link IntercomPlugin#enableLauncher(PluginCall)}
+     */
+    @Deprecated(forRemoval = true)
     public void displayLauncher(PluginCall call) {
+        return this.enableLauncher(call);
+    }
+
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    public void enableLauncher(PluginCall call) {
         Intercom.client().setLauncherVisibility(Intercom.VISIBLE);
         call.resolve();
     }
 
-    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    /**
+     * @deprecated use {@link IntercomPlugin#disableLauncher(PluginCall)}
+     */
+    @Deprecated(forRemoval = true)
     public void hideLauncher(PluginCall call) {
+        return this.disableLauncher(call);
+    }
+
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    public void disableLauncher(PluginCall call) {
+        Intercom.client().setLauncherVisibility(Intercom.GONE);
+        call.resolve();
+    }
+
+    /**
+     * @deprecated use {@link IntercomPlugin#enableMessengerPopups(PluginCall)}
+     */
+    @Deprecated(forRemoval = true)
+    public void displayInAppMessages(PluginCall call) {
+        this.enableMessengerPopups(call);
+    }
+
+    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
+    public void enableMessengerPopups(PluginCall call) {
+        Intercom.client().setInAppMessageVisibility(Intercom.VISIBLE);
+        call.resolve();
+    }
+
+    /**
+     * @deprecated use {@link IntercomPlugin#disableMessengerPopups(PluginCall)}
+     */
+    @Deprecated(forRemoval = true)
+    public void hideInAppMessages(PluginCall call) {
         Intercom.client().setLauncherVisibility(Intercom.GONE);
         call.resolve();
     }
 
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
-    public void displayInAppMessages(PluginCall call) {
-        Intercom.client().setInAppMessageVisibility(Intercom.VISIBLE);
-        call.resolve();
-    }
-
-    @PluginMethod(returnType = PluginMethod.RETURN_NONE)
-    public void hideInAppMessages(PluginCall call) {
+    public void disableMessengerPopups(PluginCall call) {
         Intercom.client().setLauncherVisibility(Intercom.GONE);
         call.resolve();
     }
@@ -213,7 +269,7 @@ public class IntercomPlugin extends Plugin {
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void displayCarousel(PluginCall call) {
         String carouselId = call.getString("carouselId");
-        Intercom.client().displayCarousel(carouselId);
+        Intercom.client().presentContent(IntercomContent.Carousel(carouselId));
         call.resolve();
     }
 
