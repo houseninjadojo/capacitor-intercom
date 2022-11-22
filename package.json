@@ -1,6 +1,6 @@
 {
   "name": "@houseninja/capacitor-intercom",
-  "version": "4.2.0-beta.2",
+  "version": "4.2.0-beta.3",
   "description": "Enable Intercom features for Capacitor apps",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -54,7 +54,7 @@
     "android/build.gradle",
     "dist/",
     "ios/Plugin/",
-    "CapacitorIntercom.podspec"
+    "HouseninjaCapacitorIntercom.podspec"
   ],
   "keywords": [
     "capacitor",
