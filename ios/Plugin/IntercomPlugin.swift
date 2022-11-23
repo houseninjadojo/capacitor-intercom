@@ -156,12 +156,14 @@ public class IntercomPlugin: CAPPlugin {
     if let customAttributes = call.getObject("customAttributes") {
       attributes.customAttributes = customAttributes
     }
+    DispatchQueue.main.async {
     Intercom.updateUser(with: attributes) { result in
-      switch result {
-      case .success:
-        call.resolve()
-      case .failure(let error):
-        call.reject(error.localizedDescription, String((error as NSError).code), error)
+        switch result {
+        case .success:
+          call.resolve()
+        case .failure(let error):
+          call.reject(error.localizedDescription, String((error as NSError).code), error)
+        }
       }
     }
   }
@@ -306,22 +308,26 @@ public class IntercomPlugin: CAPPlugin {
   }
 
   @objc func setUserHash(_ call: CAPPluginCall) {
-    if let userHash = call.getString("hmac") {
-      Intercom.setUserHash(userHash)
-      call.resolve()
-    } else {
-      call.reject("No hmac found. Read intercom docs and generate it.")
+    DispatchQueue.main.async {
+      if let userHash = call.getString("hmac") {
+        Intercom.setUserHash(userHash)
+        call.resolve()
+      } else {
+        call.reject("No hmac found. Read intercom docs and generate it.")
+      }
     }
   }
 
   @objc func setBottomPadding(_ call: CAPPluginCall) {
-    if let value = call.getString("value"),
-       let number = NumberFormatter().number(from: value) {
-        Intercom.setBottomPadding(CGFloat(truncating: number))
-        call.resolve()
-      } else {
-        call.reject("Enter a value for padding bottom")
-      }
+    DispatchQueue.main.async {
+      if let value = call.getString("value"),
+        let number = NumberFormatter().number(from: value) {
+          Intercom.setBottomPadding(CGFloat(truncating: number))
+          call.resolve()
+        } else {
+          call.reject("Enter a value for padding bottom")
+        }
+    }
   }
 
   @objc func unreadConversationCount(_ call: CAPPluginCall) {
