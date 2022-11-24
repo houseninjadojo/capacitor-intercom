@@ -1,5 +1,8 @@
 package com.getcapacitor.community.intercom;
 
+import android.content.Intent;
+import androidx.annotation.NonNull;
+
 import com.getcapacitor.CapConfig;
 import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
@@ -18,11 +21,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import io.intercom.android.sdk.Intercom;
-import io.intercom.android.sdk.IntercomPushManager;
-import io.intercom.android.sdk.UserAttributes;
-import io.intercom.android.sdk.identity.Registration;
-import io.intercom.android.sdk.push.IntercomPushClient;
+import io.intercom.android.sdk.*;
+import io.intercom.android.sdk.push.*;
+import io.intercom.android.sdk.identity.*;
 
 @CapacitorPlugin(name = "Intercom", permissions = @Permission(strings = {}, alias = "receive"))
 public class IntercomPlugin extends Plugin {
@@ -46,7 +47,13 @@ public class IntercomPlugin extends Plugin {
                 //We also initialize intercom here just in case it has died. If Intercom is already set up, this won't do anything.
                 setUpIntercom();
                 Intercom.client().handlePushMessage();
-                Intercom.client().addUnreadConversationCountListener(onUnreadCountChange);
+                Intercom.client().addUnreadConversationCountListener(
+                        i -> {
+                            JSObject ret = new JSObject();
+                            ret.put("value", i);
+                            notifyListeners("onUnreadCountChange", ret);
+                        }
+                );
             }
         });
     }
@@ -69,8 +76,19 @@ public class IntercomPlugin extends Plugin {
         if (userId != null && userId.length() > 0) {
             registration = registration.withUserId(userId);
         }
-        Intercom.client().registerIdentifiedUser(registration);
-        call.resolve();
+        Intercom.client().loginIdentifiedUser(
+                registration,
+                new IntercomStatusCallback() {
+                    @Override
+                    public void onSuccess() {
+                        call.resolve();
+                    }
+                    @Override
+                    public void onFailure(@NonNull IntercomError intercomError) {
+                        call.reject(intercomError.toString());
+                    }
+                }
+        );
     }
 
     /**
@@ -78,13 +96,23 @@ public class IntercomPlugin extends Plugin {
      */
     @Deprecated(forRemoval = true)
     public void registeredIdentifiedUser(PluginCall call) throws JSONException {
-        return this.loginIdentifiedUser(call);
+        this.loginUser(call);
     }
 
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void loginUnidentifiedUser(PluginCall call) {
-        Intercom.client().loginUnidentifiedUser();
-        call.resolve();
+        Intercom.client().loginUnidentifiedUser(
+                new IntercomStatusCallback() {
+                    @Override
+                    public void onSuccess() {
+                        call.resolve();
+                    }
+                    @Override
+                    public void onFailure(@NonNull IntercomError intercomError) {
+                        call.reject(intercomError.toString());
+                    }
+                }
+        );
     }
 
     /**
@@ -92,7 +120,7 @@ public class IntercomPlugin extends Plugin {
      */
     @Deprecated(forRemoval = true)
     public void registerUnidentifiedUser(PluginCall call) {
-        return this.loginUnidentifiedUser(call);
+        this.loginUnidentifiedUser(call);
     }
 
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
@@ -121,15 +149,17 @@ public class IntercomPlugin extends Plugin {
         Map<String, Object> customAttributes = mapFromJSON(call.getObject("customAttributes"));
         builder.withCustomAttributes(customAttributes);
         Intercom.client().updateUser(
-            userAttributes = builder.build(),
-            intercomStatusCallback = object : IntercomStatusCallback {
-                override fun onSuccess() {
-                    call.resolve();
+                builder.build(),
+                new IntercomStatusCallback() {
+                    @Override
+                    public void onSuccess() {
+                        call.resolve();
+                    }
+                    @Override
+                    public void onFailure(@NonNull IntercomError intercomError) {
+                        call.reject(intercomError.toString());
+                    }
                 }
-                override fun onFailure(intercomError: IntercomError) {
-                    call.reject(intercomError.message, intercomError);
-                }
-            }
         );
     }
 
@@ -143,13 +173,11 @@ public class IntercomPlugin extends Plugin {
     public void logEvent(PluginCall call) {
         String eventName = call.getString("name");
         Map<String, Object> metaData = mapFromJSON(call.getObject("data"));
-
         if (metaData == null) {
             Intercom.client().logEvent(eventName);
         } else {
             Intercom.client().logEvent(eventName, metaData);
         }
-
         call.resolve();
     }
 
@@ -158,7 +186,7 @@ public class IntercomPlugin extends Plugin {
      */
     @Deprecated(forRemoval = true)
     public void displayMessenger(PluginCall call) {
-        return this.show(call);
+        this.show(call);
     }
 
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
@@ -171,7 +199,7 @@ public class IntercomPlugin extends Plugin {
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void displayInbox(PluginCall call) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        Intercom.client().present(IntercomSpace.Messenger);
+        Intercom.client().present(IntercomSpace.Messages);
         call.resolve();
     }
 
@@ -191,7 +219,8 @@ public class IntercomPlugin extends Plugin {
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void displayArticle(PluginCall call) {
         String articleId = call.getString("articleId");
-        Intercom.client().presentContent(IntercomContent.Article(articleId));
+        IntercomContent.Article content = new IntercomContent.Article(articleId);
+        Intercom.client().presentContent(content);
         call.resolve();
     }
 
@@ -200,7 +229,7 @@ public class IntercomPlugin extends Plugin {
      */
     @Deprecated(forRemoval = true)
     public void hideMessenger(PluginCall call) {
-        return this.hide(call);
+        this.hide(call);
     }
 
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
@@ -214,7 +243,7 @@ public class IntercomPlugin extends Plugin {
      */
     @Deprecated(forRemoval = true)
     public void displayLauncher(PluginCall call) {
-        return this.enableLauncher(call);
+        this.enableLauncher(call);
     }
 
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
@@ -228,7 +257,7 @@ public class IntercomPlugin extends Plugin {
      */
     @Deprecated(forRemoval = true)
     public void hideLauncher(PluginCall call) {
-        return this.disableLauncher(call);
+        this.disableLauncher(call);
     }
 
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
@@ -269,7 +298,8 @@ public class IntercomPlugin extends Plugin {
     @PluginMethod(returnType = PluginMethod.RETURN_NONE)
     public void displayCarousel(PluginCall call) {
         String carouselId = call.getString("carouselId");
-        Intercom.client().presentContent(IntercomContent.Carousel(carouselId));
+        IntercomContent.Carousel content = new IntercomContent.Carousel(carouselId);
+        Intercom.client().presentContent(content);
         call.resolve();
     }
 
@@ -317,7 +347,8 @@ public class IntercomPlugin extends Plugin {
 
     @PluginMethod
     public void getUnreadConversationCount(PluginCall call) {
-        String stringValue = Intercom.client().getUnreadConversationCount();
+        int val = Intercom.client().getUnreadConversationCount();
+        String stringValue = String.valueOf(val);
         JSObject ret = new JSObject();
         ret.put("value", stringValue);
         call.resolve(ret);
@@ -371,11 +402,5 @@ public class IntercomPlugin extends Plugin {
             }
         }
         return list;
-    }
-
-    private void onUnreadCountChange(String unreadCount) {
-        JSObject ret = new JSObject();
-        ret.put("value", unreadCount);
-        notifyListeners("onUnreadCountChange", ret);
     }
 }
