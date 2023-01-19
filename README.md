@@ -6,13 +6,14 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/maintenance/yes/2021?style=flat-square" />
+  <img src="https://img.shields.io/maintenance/yes/2023?style=flat-square" />
   <a href="https://www.npmjs.com/package/@houseninja/capacitor-intercom"><img src="https://img.shields.io/npm/l/@houseninja/capacitor-intercom?style=flat-square" /></a>
+  <img src="https://img.shields.io/github/last-commit/houseninjadojo/capacitor-intercom?style=flat-square"></img>
 <br>
-  <a href="https://www.npmjs.com/package/@houseninja/capacitor-intercom"><img src="https://img.shields.io/npm/dw/@capacitor-community/intercom?style=flat-square" /></a>
+  <a href="https://www.npmjs.com/package/@houseninja/capacitor-intercom"><img src="https://img.shields.io/npm/dw/@houseninja/capacitor-intercom?style=flat-square" /></a>
   <a href="https://www.npmjs.com/package/@houseninja/capacitor-intercom"><img src="https://img.shields.io/npm/v/@houseninja/capacitor-intercom?style=flat-square" /></a>
   <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-<a href="#contributors"><img src="https://img.shields.io/badge/all%20contributors-10-orange?style=flat-square" /></a>
+<a href="#contributors"><img src="https://img.shields.io/github/contributors/houseninjadojo/capacitor-intercom?style=flat-square" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 </p>
 
@@ -158,45 +159,65 @@ Now you should be set to go. Try to run your client using `ionic cap run android
 
 <docgen-index>
 
-* [`boot(...)`](#boot)
-* [`loginUser(...)`](#loginuser)
-* [`registerIdentifiedUser(...)`](#registeridentifieduser)
-* [`loginUnidentifiedUser()`](#loginunidentifieduser)
-* [`registerUnidentifiedUser()`](#registerunidentifieduser)
-* [`updateUser(...)`](#updateuser)
-* [`logout()`](#logout)
-* [`logEvent(...)`](#logevent)
-* [`displayMessenger()`](#displaymessenger)
-* [`show()`](#show)
-* [`displayInbox()`](#displayinbox)
-* [`displayMessageComposer(...)`](#displaymessagecomposer)
-* [`displayHelpCenter()`](#displayhelpcenter)
-* [`displayArticle(...)`](#displayarticle)
-* [`displayCarousel(...)`](#displaycarousel)
-* [`displayLauncher()`](#displaylauncher)
-* [`enableLauncher()`](#enablelauncher)
-* [`displayInAppMessages()`](#displayinappmessages)
-* [`enableMessengerPopups()`](#enablemessengerpopups)
-* [`hideMessenger()`](#hidemessenger)
-* [`hide()`](#hide)
-* [`hideLauncher()`](#hidelauncher)
-* [`disableLauncher()`](#disablelauncher)
-* [`hideInAppMessages()`](#hideinappmessages)
-* [`disableMessengerPopups()`](#disablemessengerpopups)
-* [`setUserHash(...)`](#setuserhash)
-* [`setBottomPadding(...)`](#setbottompadding)
-* [`sendPushTokenToIntercom(...)`](#sendpushtokentointercom)
-* [`receivePush(...)`](#receivepush)
-* [`unreadConversationCount()`](#unreadconversationcount)
-* [`addListener('onUnreadCountChange', ...)`](#addlisteneronunreadcountchange)
-* [`addListener('windowWillShow', ...)`](#addlistenerwindowwillshow)
-* [`addListener('windowDidShow', ...)`](#addlistenerwindowdidshow)
-* [`addListener('windowWillHide', ...)`](#addlistenerwindowwillhide)
-* [`addListener('windowDidHide', ...)`](#addlistenerwindowdidhide)
-* [`addListener('didStartNewConversation', ...)`](#addlistenerdidstartnewconversation)
-* [`removeAllListeners()`](#removealllisteners)
-* [Interfaces](#interfaces)
-* [Type Aliases](#type-aliases)
+- [Maintainers](#maintainers)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Web Only](#web-only)
+  - [Web, iOS, Android](#web-ios-android)
+- [iOS setup](#ios-setup)
+- [Android setup](#android-setup)
+- [API](#api)
+  - [boot(...)](#boot)
+  - [loginUser(...)](#loginuser)
+  - [registerIdentifiedUser(...)](#registeridentifieduser)
+  - [loginUnidentifiedUser()](#loginunidentifieduser)
+  - [registerUnidentifiedUser()](#registerunidentifieduser)
+  - [updateUser(...)](#updateuser)
+  - [logout()](#logout)
+  - [logEvent(...)](#logevent)
+  - [displayMessenger()](#displaymessenger)
+  - [show()](#show)
+  - [displayInbox()](#displayinbox)
+  - [displayMessageComposer(...)](#displaymessagecomposer)
+  - [displayHelpCenter()](#displayhelpcenter)
+  - [displayArticle(...)](#displayarticle)
+  - [displayCarousel(...)](#displaycarousel)
+  - [displayLauncher()](#displaylauncher)
+  - [enableLauncher()](#enablelauncher)
+  - [displayInAppMessages()](#displayinappmessages)
+  - [enableMessengerPopups()](#enablemessengerpopups)
+  - [hideMessenger()](#hidemessenger)
+  - [hide()](#hide)
+  - [hideLauncher()](#hidelauncher)
+  - [disableLauncher()](#disablelauncher)
+  - [hideInAppMessages()](#hideinappmessages)
+  - [disableMessengerPopups()](#disablemessengerpopups)
+  - [setUserHash(...)](#setuserhash)
+  - [setBottomPadding(...)](#setbottompadding)
+  - [sendPushTokenToIntercom(...)](#sendpushtokentointercom)
+  - [receivePush(...)](#receivepush)
+  - [unreadConversationCount()](#unreadconversationcount)
+  - [addListener('onUnreadCountChange', ...)](#addlisteneronunreadcountchange-)
+  - [addListener('windowWillShow', ...)](#addlistenerwindowwillshow-)
+  - [addListener('windowDidShow', ...)](#addlistenerwindowdidshow-)
+  - [addListener('windowWillHide', ...)](#addlistenerwindowwillhide-)
+  - [addListener('windowDidHide', ...)](#addlistenerwindowdidhide-)
+  - [addListener('didStartNewConversation', ...)](#addlistenerdidstartnewconversation-)
+  - [removeAllListeners()](#removealllisteners)
+  - [Interfaces](#interfaces)
+    - [IntercomSettings](#intercomsettings)
+    - [Date](#date)
+    - [IntercomAvatar](#intercomavatar)
+    - [IntercomCompany](#intercomcompany)
+    - [IntercomUserUpdateOptions](#intercomuserupdateoptions)
+    - [IntercomPushNotificationData](#intercompushnotificationdata)
+    - [UnreadConversationCount](#unreadconversationcount-1)
+    - [PluginListenerHandle](#pluginlistenerhandle)
+  - [Type Aliases](#type-aliases)
+    - [UnreadCountChangeListener](#unreadcountchangelistener)
+- [License](#license)
+- [Example](#example)
+- [Contributors ✨](#contributors-)
 
 </docgen-index>
 
@@ -215,7 +236,6 @@ boot(options: IntercomSettings) => Promise<void>
 
 --------------------
 
-
 ### loginUser(...)
 
 ```typescript
@@ -227,7 +247,6 @@ loginUser(options: { userId?: string; email?: string; }) => Promise<void>
 | **`options`** | <code>{ userId?: string; email?: string; }</code> |
 
 --------------------
-
 
 ### registerIdentifiedUser(...)
 
@@ -241,7 +260,6 @@ registerIdentifiedUser(options: { userId?: string; email?: string; }) => Promise
 
 --------------------
 
-
 ### loginUnidentifiedUser()
 
 ```typescript
@@ -250,7 +268,6 @@ loginUnidentifiedUser() => Promise<void>
 
 --------------------
 
-
 ### registerUnidentifiedUser()
 
 ```typescript
@@ -258,7 +275,6 @@ registerUnidentifiedUser() => Promise<void>
 ```
 
 --------------------
-
 
 ### updateUser(...)
 
@@ -272,7 +288,6 @@ updateUser(options: IntercomUserUpdateOptions) => Promise<void>
 
 --------------------
 
-
 ### logout()
 
 ```typescript
@@ -280,7 +295,6 @@ logout() => Promise<void>
 ```
 
 --------------------
-
 
 ### logEvent(...)
 
@@ -294,7 +308,6 @@ logEvent(options: { name: string; data?: any; }) => Promise<void>
 
 --------------------
 
-
 ### displayMessenger()
 
 ```typescript
@@ -302,7 +315,6 @@ displayMessenger() => Promise<void>
 ```
 
 --------------------
-
 
 ### show()
 
@@ -312,7 +324,6 @@ show() => Promise<void>
 
 --------------------
 
-
 ### displayInbox()
 
 ```typescript
@@ -320,7 +331,6 @@ displayInbox() => Promise<void>
 ```
 
 --------------------
-
 
 ### displayMessageComposer(...)
 
@@ -334,7 +344,6 @@ displayMessageComposer(options: { message: string; }) => Promise<void>
 
 --------------------
 
-
 ### displayHelpCenter()
 
 ```typescript
@@ -342,7 +351,6 @@ displayHelpCenter() => Promise<void>
 ```
 
 --------------------
-
 
 ### displayArticle(...)
 
@@ -356,7 +364,6 @@ displayArticle(options: { articleId: string; }) => Promise<void>
 
 --------------------
 
-
 ### displayCarousel(...)
 
 ```typescript
@@ -369,7 +376,6 @@ displayCarousel(options: { carouselId: string; }) => Promise<void>
 
 --------------------
 
-
 ### displayLauncher()
 
 ```typescript
@@ -377,7 +383,6 @@ displayLauncher() => Promise<void>
 ```
 
 --------------------
-
 
 ### enableLauncher()
 
@@ -387,7 +392,6 @@ enableLauncher() => Promise<void>
 
 --------------------
 
-
 ### displayInAppMessages()
 
 ```typescript
@@ -395,7 +399,6 @@ displayInAppMessages() => Promise<void>
 ```
 
 --------------------
-
 
 ### enableMessengerPopups()
 
@@ -405,7 +408,6 @@ enableMessengerPopups() => Promise<void>
 
 --------------------
 
-
 ### hideMessenger()
 
 ```typescript
@@ -413,7 +415,6 @@ hideMessenger() => Promise<void>
 ```
 
 --------------------
-
 
 ### hide()
 
@@ -423,7 +424,6 @@ hide() => Promise<void>
 
 --------------------
 
-
 ### hideLauncher()
 
 ```typescript
@@ -431,7 +431,6 @@ hideLauncher() => Promise<void>
 ```
 
 --------------------
-
 
 ### disableLauncher()
 
@@ -441,7 +440,6 @@ disableLauncher() => Promise<void>
 
 --------------------
 
-
 ### hideInAppMessages()
 
 ```typescript
@@ -450,7 +448,6 @@ hideInAppMessages() => Promise<void>
 
 --------------------
 
-
 ### disableMessengerPopups()
 
 ```typescript
@@ -458,7 +455,6 @@ disableMessengerPopups() => Promise<void>
 ```
 
 --------------------
-
 
 ### setUserHash(...)
 
@@ -472,7 +468,6 @@ setUserHash(options: { hmac: string; }) => Promise<void>
 
 --------------------
 
-
 ### setBottomPadding(...)
 
 ```typescript
@@ -484,7 +479,6 @@ setBottomPadding(options: { value: string; }) => Promise<void>
 | **`options`** | <code>{ value: string; }</code> |
 
 --------------------
-
 
 ### sendPushTokenToIntercom(...)
 
@@ -498,7 +492,6 @@ sendPushTokenToIntercom(options: { value: string; }) => Promise<void>
 
 --------------------
 
-
 ### receivePush(...)
 
 ```typescript
@@ -511,7 +504,6 @@ receivePush(notification: IntercomPushNotificationData) => Promise<void>
 
 --------------------
 
-
 ### unreadConversationCount()
 
 ```typescript
@@ -521,7 +513,6 @@ unreadConversationCount() => Promise<UnreadConversationCount>
 **Returns:** <code>Promise&lt;<a href="#unreadconversationcount">UnreadConversationCount</a>&gt;</code>
 
 --------------------
-
 
 ### addListener('onUnreadCountChange', ...)
 
@@ -538,7 +529,6 @@ addListener(eventName: 'onUnreadCountChange', listenerFunc: UnreadCountChangeLis
 
 --------------------
 
-
 ### addListener('windowWillShow', ...)
 
 ```typescript
@@ -553,7 +543,6 @@ addListener(eventName: 'windowWillShow', listenerFunc: () => void) => Promise<Pl
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
 --------------------
-
 
 ### addListener('windowDidShow', ...)
 
@@ -570,7 +559,6 @@ addListener(eventName: 'windowDidShow', listenerFunc: () => void) => Promise<Plu
 
 --------------------
 
-
 ### addListener('windowWillHide', ...)
 
 ```typescript
@@ -585,7 +573,6 @@ addListener(eventName: 'windowWillHide', listenerFunc: () => void) => Promise<Pl
 **Returns:** <code>Promise&lt;<a href="#pluginlistenerhandle">PluginListenerHandle</a>&gt; & <a href="#pluginlistenerhandle">PluginListenerHandle</a></code>
 
 --------------------
-
 
 ### addListener('windowDidHide', ...)
 
@@ -602,7 +589,6 @@ addListener(eventName: 'windowDidHide', listenerFunc: () => void) => Promise<Plu
 
 --------------------
 
-
 ### addListener('didStartNewConversation', ...)
 
 ```typescript
@@ -618,7 +604,6 @@ addListener(eventName: 'didStartNewConversation', listenerFunc: () => void) => P
 
 --------------------
 
-
 ### removeAllListeners()
 
 ```typescript
@@ -627,9 +612,7 @@ removeAllListeners() => Promise<void>
 
 --------------------
 
-
 ### Interfaces
-
 
 #### IntercomSettings
 
@@ -660,7 +643,6 @@ removeAllListeners() => Promise<void>
 | **`user_hash`**                | <code>string</code>                                         |
 | **`company`**                  | <code><a href="#intercomcompany">IntercomCompany</a></code> |
 | **`companies`**                | <code>IntercomCompany[]</code>                              |
-
 
 #### Date
 
@@ -712,14 +694,12 @@ Enables basic storage and retrieval of dates and times.
 | **toISOString**        | () =&gt; string                                                                                              | Returns a date as a string value in ISO format.                                                                                         |
 | **toJSON**             | (key?: any) =&gt; string                                                                                     | Used by the JSON.stringify method to enable the transformation of an object's data for JavaScript Object Notation (JSON) serialization. |
 
-
 #### IntercomAvatar
 
 | Prop            | Type                |
 | --------------- | ------------------- |
 | **`type`**      | <code>string</code> |
 | **`image_url`** | <code>string</code> |
-
 
 #### IntercomCompany
 
@@ -736,7 +716,6 @@ Enables basic storage and retrieval of dates and times.
 | **`website`**           | <code>string</code>                   |
 | **`industry`**          | <code>string</code>                   |
 
-
 #### IntercomUserUpdateOptions
 
 | Prop                   | Type                                 |
@@ -747,7 +726,6 @@ Enables basic storage and retrieval of dates and times.
 | **`phone`**            | <code>string</code>                  |
 | **`languageOverride`** | <code>string</code>                  |
 | **`customAttributes`** | <code>{ [key: string]: any; }</code> |
-
 
 #### IntercomPushNotificationData
 
@@ -768,13 +746,11 @@ Enables basic storage and retrieval of dates and times.
 | **`title`**                     | <code>string</code> |
 | **`priority`**                  | <code>number</code> |
 
-
 #### UnreadConversationCount
 
 | Prop        | Type                |
 | ----------- | ------------------- |
 | **`value`** | <code>string</code> |
-
 
 #### PluginListenerHandle
 
@@ -782,9 +758,7 @@ Enables basic storage and retrieval of dates and times.
 | ------------ | ----------------------------------------- |
 | **`remove`** | <code>() =&gt; Promise&lt;void&gt;</code> |
 
-
 ### Type Aliases
-
 
 #### UnreadCountChangeListener
 
